@@ -153,41 +153,36 @@
         
 
         #chat {
-        	top:20px;
-         	background-color:#4CAF50;
+         	color:white;
+         	text-decoration:none;
         }
-		
-		#attendance{
-        	top:80px;
-        	background-color: #99ddff;
-        }
-		
+
         #request {
-          top: 140px;
+          top: 80px;
           background-color: #2196F3;
           /*background-color: #66ccff;*/
         }
 
         #files {
-          top: 200px;
+          top: 140px;
           background-color: #f44336;
           /*background-color:  #33bbff;*/
         }
 
         #task {
-          top: 260px;
+          top: 200px;
           background-color: #555;
           /*background-color: #00aaff;*/
         }
 
         #todo{
-          color:white;
-          text-decoration:none;
+          top: 260px;
+          background-color:  #ff8000;
           /*background-color:  #0088cc;*/
         }
 
         #contact{
-          top: 380px;
+          top: 320px;
           background-color:  #800080;
           /*background-color: #005580;*/
         }
@@ -199,13 +194,13 @@
         .content{
           width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           margin-left: 170px;
           display: flex;
           flex-wrap: wrap;
           position: absolute;
           max-width: 1000px;
-          border-radius: 5px;
+          border-radius: 30px;
           font-family: 'Raleway', sans-serif;
           margin-top:0px;
           border: 2px solid #dedede;
@@ -219,8 +214,8 @@
           font-size: 20px;
           color: white;
           border-radius: 0 5px 5px 0;
-          margin-top: 320px;
-          background-color: #ff8000;
+          margin-top: 20px;
+          background-color: #4CAF50;
           color: white;
         }
         
@@ -288,111 +283,9 @@
 			font-size:20px;
 		
 		}
-		.content{
-          width: 1000px;
-          height: 500px;
-          background-color: #330033;
-          margin-left: 170px;
-          margin-top: 0px;
-          display: inline-block;
-          border-radius: 5px;
-        }
-
-
-          /* Style the close button */
-          .close {
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 12px 16px 12px 16px;
-          }
-
-          .close:hover {
-            background-color: #f44336;
-            color: white;
-          }
-
-          /* Style the header */
-          .header1 {
-            background-color: #330033;
-            padding: 30px 40px;
-            color: white;
-            text-align: center;
-            border-radius: 30px;
-          }
-
-          /* Clear floats after the header */
-          .header1:after {
-            content: "";
-            display: table;
-            clear: both;
-          }
-
-          /* Style the input */
-          input {
-            margin-right: 40px;
-            margin-left: 40px;
-            border: none;
-            border-radius: 0;
-            width: 40%;
-            padding: 10px;
-            float: left;
-            font-size: 16px;
-            border-radius:5px;
-            outline:none;
-          }
-
-          /* Style the "Add" button */
-          .addBtn {
-            padding: 10px 20px;
-            width: 10%;
-            background: #d9d9d9;
-            color: black;
-            float: left;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 0;
-            border-radius:5px;
-            outline:none;
-          }
-          .addBtn:hover {
-            background-color: #bbb;
-          }
-		  .alltasks{
-		    margin-top:20px;
-		    height:auto;
-		  	max-height:300px;
-		  	overflow-y:scroll;
-		  	overflow-x:hidden;
-		  	width:60%;
-		  	margin:auto;
-		  	text-align:center;
-		  }
-		  .task{
-		    color:black;
-		    font-size:1.1rem;
-		  	display:flex;
-		  	justify-content:space-between;
-		  	height:30px;
-		  	padding:5px 20px;
-		  	margin-top:5px;
-		  	background-color:grey;
-		  }
-		  .task div{
-		  	margin-top:7px;
-		  }
-		  #cross{
-			  color:black;
-			  margin-top:7px;
-		  }
-		  ::-webkit-scrollbar {
-            width: 0px; 
-            background: transparent; 
-        }
     </style>
 </head>
+
 
 <body >
 
@@ -401,7 +294,7 @@
     <div class="header">
         <div class="logo">
         <div class="logoname">
-        	<a class="re" href="remote_home.jsp"><i class="fa fa-podcast" aria-hidden="true"></i></a>
+        	<a class="re" href="E:/remote/remote_homepage.html"><i class="fa fa-podcast" aria-hidden="true"></i></a>
             <h4 class="text1">Remote</h4>
          </div>  
         </div>
@@ -410,9 +303,11 @@
                 <a href="#" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                                
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -421,40 +316,138 @@
     </div>
 
    <div id="mySidenav" class="sidenav">
-   	  <a href="remote_chat.jsp" id="chat">Chat  <i style="float:right" class="fa fa-commenting-o" aria-hidden="true"></i></a>
-      <a href="remote_dash.jsp" id="attendance">Dash<i class="fa fa-check-circle" aria-hidden="true"></i></a>
+      <a href="remote_chat.jsp" id="chat">Chat  <i style="float:right" class="fa fa-commenting-o" aria-hidden="true"></i></a>
       <a href="remote_request.jsp" id="request">Request <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
-      <a href="remote_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
+      <a href="remot_files" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="remote_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
-      <a href="remote_contact.jsp" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
+      <a href="remote_schedule.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
+      <a href="remote_contact" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
     </div>
-    <div id="select">
-    	  <a href="remote_todo.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
-   	</div>
     
     <div class="content">
-   	  <form id="myDIV" class="header1" method="post" action="ToDoList">
+   		<div id="myDIV" class="header1">
         <h2 style="margin:5px; float: left; margin-top: 40px;">TO-DO LIST</h2><br><br>
-        <input type="text" id="myInput" name="task_name" placeholder="Title..." autocomplete="off" required>
-        <button type="submit" class="addBtn" ><i style="color: rgb(204, 0, 0)" class="fa fa-plus" aria-hidden="true"></i>  Add</button>
-      </form>
-      
-      <%
-	      UserModel user = (UserModel) session.getAttribute("user");
-	      List <ToDoListModel> allToDos = ToDoListDAO.getAllToDoOfUser(user.getEmail());
-		  session.setAttribute("allToDos",allToDos );
-      %>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
 
-      <div class="alltasks">
-      <% if(allToDos!=null){for(ToDoListModel i : allToDos){ %>
-        <div class="task">
-	        <div><%= i.getTaskName() %></div>
-	        <a href="ToDoList?action=delete&taskId=<%= i.getTaskId() %>"><i id="cross" style="color: rgb(204, 0, 0)" class="fa fa-window-close" aria-hidden="true"></i></a>
-        </div>
-        <% }} %>
       </div>
+
+      <ul id="myUL">
+        <li>Hit the gym</li>
+        <li class="checked">Pay bills</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+      </ul>
     </div>
 
+    <script type="text/javascript">
+			
+    			function updateScroll(){
+	      			var element = document.getElementById("bm");
+	      			element.scrollTop = element.scrollHeight;
+	  			}		
     
+    
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
+    </script>
 </body>
 </html>

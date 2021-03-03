@@ -1,6 +1,6 @@
 package com.remote.control;
 
-import java.io.IOException;  
+import java.io.IOException; 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.lang.*;
+import java.util.*;
 import com.remote.dao.UserDAO;
 import com.remote.model.UserModel;
 
@@ -39,58 +39,43 @@ public class profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-//    	String name = request.getParameter("name");
-//    	String gender  = request.getParameter("gender");
-//    	String dept = request.getParameter("dept");
-//    	
-//    	System.out.println(name);
-//    	System.out.println(gender);
-//    	System.out.println(dept);
-    	
-        try {
-        	
-//            //get id from session
-        	response.setContentType("text/html");   
-              
-            HttpSession session=request.getSession();  
-            UserModel newUser = (UserModel) session.getAttribute("user");
-//            String path = request.getServletContext().getRealPath("");
-//            
-            System.out.println("<<<<<<<      "+newUser.getName());
-            newUser.setName(request.getParameter("name"));
-            newUser.setRegNo(request.getParameter("regno"));
-            newUser.setGender(request.getParameter("gender"));
-            newUser.setDept(request.getParameter("dept"));
-            newUser.setPhoneNumber(request.getParameter("ph_no"));
+			String name = request.getParameter("uname");
+			String regno = request.getParameter("regno");
+			String email = request.getParameter("email");
+			String gender = request.getParameter("gender");
+			String dept = request.getParameter("dept");
+			String contact = request.getParameter("contact");
+			try {
+	        	
+//	            //get id from session
+	        	response.setContentType("text/html");   
+	              
+	            HttpSession session=request.getSession();  
+	            UserModel newUser = (UserModel) session.getAttribute("user");
+//	            String path = request.getServletContext().getRealPath("");
+//	            
+	            System.out.println("<<<<<<<      "+newUser.getName());
+	            newUser.setName(name);
+	            newUser.setRegNo(regno);
+	            newUser.setGender(gender);
+	            newUser.setDept(dept);
+	            newUser.setPhoneNumber(Integer.parseInt(contact));
 
-            if (UserDAO.update(newUser)> 0) { 
-                newUser.setPassword("");
-                session.setAttribute("user", newUser);
+	            if (UserDAO.update(newUser)> 0) { 
+	                newUser.setPassword("");
+	                session.setAttribute("user", newUser);
 
-                session.setAttribute("msg", "update user info Successfully");
-//                doGet(request,response);
-                
-                if(newUser.getIsAdmin()==1)
-                {
-                	response.sendRedirect("admin_profile.jsp");
-                }else{
-                	response.sendRedirect("remote_profile.jsp");
-                }
-            } else {
-                session.setAttribute("msg", "Error in updating user profile");
-                if(newUser.getIsAdmin()==1)
-                {
-                	response.sendRedirect("admin_profile.jsp");
-                }else{
-                	response.sendRedirect("remote_profile.jsp");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-
-	
+	                session.setAttribute("msg", "update user info Successfully");
+//	                doGet(request,response);
+	                response.sendRedirect("remote_profile.jsp");
+	                
+	            } else {
+	                session.setAttribute("msg", "Error in updating user profile");
+	                response.sendRedirect("remote_profile.jsp");
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } 
 	}
 
 }

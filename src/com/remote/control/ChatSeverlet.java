@@ -1,11 +1,6 @@
 package com.remote.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.remote.dao.ChatDAO;
-import com.remote.model.ChatModel;
 import com.remote.model.UserModel;
 
 /**
@@ -38,24 +32,8 @@ public class ChatSeverlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		 response.setContentType("text/html");
-	     PrintWriter out=response.getWriter();
-
-	     String s1=request.getParameter("msg");
-	     if(!s1.equals(""))
-	     {
-		     HttpSession session = request.getSession();
-		     UserModel user = (UserModel)session.getAttribute("user");
-		     ChatModel model = new ChatModel();
-		     model.setEmail(user.getEmail());
-		     model.setUsername(user.getName());
-		     model.setMessage(s1);
-		     if(!s1.equals(""))
-		     {
-		    	 ChatDAO.clientSide(model);
-		     }
-	     } 
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -63,6 +41,19 @@ public class ChatSeverlet extends HttpServlet {
 	 */
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String message = (String) request.getParameter("textbox");
+		System.out.println("hello serverlet"+message);
+		HttpSession session = request.getSession();
+		UserModel user = (UserModel)session.getAttribute("user");
+		String name = user.getName();
+		String email = user.getEmail();
+		ChatDAO.saveMessage(email,name,message);
+		ChatDAO.clientSide(message);
+		if(email.equals("admin@gmail.com"))
+		{
+			response.sendRedirect("admin_chat.jsp");
+		}else{
+			response.sendRedirect("remote_chat.jsp");
+		}	
 	}
 }

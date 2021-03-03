@@ -6,7 +6,6 @@ public class StatusModel {
 	private String name;
 	private String department;
 	private int status;
-	private String job;
 	
 	
 	public String getEmail() {
@@ -33,12 +32,6 @@ public class StatusModel {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getJob() {
-		return job;
-	}
-	public void setJob(String job) {
-		this.job = job;
-	}
-
+	
 }
 

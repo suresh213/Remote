@@ -35,20 +35,18 @@ public class Task extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		String action = request.getParameter("action");
-		
 		HttpSession session=request.getSession();
+		
 	    Connection con = DBConnection.getConnection();
 	    int status=0;
-		
-	    try{
+		try{
 			if(action.equalsIgnoreCase("delete")){
 				String name = request.getParameter("name").trim();
 				PreparedStatement ps = con.prepareStatement("DELETE FROM `tasktable` WHERE taskname = ?");
 			    ps.setString(1, name);
 			    status = ps.executeUpdate();
 		        response.sendRedirect("admin_task.jsp");
-			}
-			else if(action.equalsIgnoreCase("update"))
+			}else if(action.equalsIgnoreCase("update"))
 			{
 				String taskname = request.getParameter("taskname");
 				String date = request.getParameter("date");

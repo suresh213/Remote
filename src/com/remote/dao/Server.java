@@ -1,6 +1,6 @@
 package com.remote.dao;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.ServerSocket;
 
 public class Server {

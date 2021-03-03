@@ -4,17 +4,13 @@
 <html>
 
 <head>
-	<title>Remote</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+	<title>REMOTE.com</title>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<style>		
+		<style>
 		body{
 			margin: 0;
 			padding: 0;
 			background-color: black;
-			font-family: 'Raleway', sans-serif;
 		}
 		.page
 		{	
@@ -143,15 +139,13 @@
 	</style>         
 </head>
 <body>
+		
 	<div class = "page"> 
 		<div class="icon">
 		<i class="fa fa-podcast" aria-hidden="true"></i>
 		</div>  
 		<div class = "welcome">
-		<img src="images/reg.png" alt = "welcome" width="300" height="300">
-		<p style="color:white">Why Remote?</p>
-		<p style="color:white">Remote helps to manage tasks in easy way for both admin and users..</p>
-		<p style="color:white">Register and enjoy...</p>
+		<img src="images/reg.png" alt = "welcome" width="400" height="400">
 		</div>
 		<
 		<div class ="form">
@@ -160,99 +154,25 @@
 				<button type = "button" class = "toggle-btn" onclick="login()">Log In</button>
 				<button type = "button" class = "toggle-btn" onclick="register()">Register</button>
 			</div>
-		<form id="login" class="input">
-			<input type="text" name="email" id="email-id" class="input-field" placeholder="Enter Email" required><br>
-			<input type="Password" name="password" id="pass" class="input-field" placeholder="Enter Password" required><br><br>
+		<form id="login" class="input" method="post" action="Login">
+			<input type="text" name="email" class="input-field" placeholder="Enter Email" required><br>
+			<input type="Password" name="password" class="input-field" placeholder="Enter Password" required><br><br>
 			<a href="forgetpassword.jsp" class="forget">forget password?</a>
-			<p style="color:red" id="err"></p>
+			<% if(session.getAttribute("err")!=null){ %>
+					<p style="color:red" id="err"><%= session.getAttribute("err") %></p>
+			<% } session.removeAttribute("err"); %>
 			<button type="submit" class="submit-button">LOGIN</button><br>
 		</form>
-		<form id="register" class="input">
-			<input type="text" name="name" id="name" class="input-field" placeholder="Enter Username" required><br>
-			<input type="email" name="email" id="email" class="input-field" placeholder="Enter Email" required><br>
-			<input type="Password" name="password" id="password" class="input-field" placeholder="Enter Password" required><br>
-			<input type="Password" name="conpass" id="conpass" class="input-field" placeholder="Confirm Password" required><br>
-			<p style="color:red" id="error"></p>
+		<form id="register" class="input" method="post" action="Register">
+			<input type="text" name="name" class="input-field" placeholder="Enter Username" required><br>
+			<input type="email" name="email" class="input-field" placeholder="Enter Email" required><br>
+			<input type="Password" name="password" class="input-field" placeholder="Enter Password" required><br>
+			<input type="Password" name="conpass" class="input-field" placeholder="Confirm Password" required><br>
 			<button type="submit" class="submit-button">REGISTER</button><br>
 		</form>
 		</div>									
 	</div>
 	<script>
-	
-	$(document).ready(function(){
-		$("#login").submit(function(){
-			var data = $('#login').serialize();
-			$.ajax({
-			url: 'Login',
-			type: 'post',
-			data:data,
-			success: function(msg){
-				console.log(msg);
-				if(msg.trim() === 'whitelist'){
-					$("#err").html('Login Verified, Logging in.....').fadeTo(900,1,function(){
-						document.location='whitelistError.jsp';
-					});
-				}
-				else if(msg.trim() === 'admin'){
-					$("#err").html('Login Verified, Logging in.....').fadeTo(900,1,function(){
-						document.location='admin_home.jsp';
-					});
-				}
-				else if(msg.trim() === 'user'){
-					$("#err").html('Login Verified, Logging in.....').fadeTo(900,1,function(){
-						document.location='remote_home.jsp';
-					});
-				}
-				else{
-					$("#err").html('Invalid credentials');
-					setTimeout(function(){
-						$("#err").html('');
-					},2000);
-			    }
-			  }
-			});
-			return false;
-		});
-	});
-	
-	
-	
-	$(document).ready(function(){
-		$("#register").submit(function(){
-			if($('#password').val()!=$('#conpass').val()){
-				$("#error").html('Password not matched');
-				setTimeout(function(){
-					$("#error").html('');
-				},2000);
-				return false;
-			}
-				
-			var data = $('#register').serialize();
-			$.ajax({
-			url: 'Register',
-			type: 'post',
-			data:data,
-			success: function(msg){
-				console.log(msg);
-				if(msg.trim() === 'success'){
-					$("#error").html('Registered, Logging in.....').fadeTo(900,1,function(){
-						setTimeout(function(){
-							document.location='remote_home.jsp';
-						},1000);
-					});
-				}
-				else if(msg.trim() === 'error'){
-					$("#error").html('Email already exists');
-					setTimeout(function(){
-						$("#error").html('');
-					},1000);
-				}
-			  }
-			});
-			return false;
-		});
-	});
-	 
 		var x=document.getElementById("login");
 		var y=document.getElementById("register");
 		var z=document.getElementById("btn");
@@ -269,7 +189,7 @@
 			y.style.left = "450px";
 			z.style.left ="0px";
 		}
-				
+
 	</script>
 </body>
 </html>           

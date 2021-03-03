@@ -157,37 +157,32 @@
          	background-color: #4CAF50;
         }
 
-		#attendance{
-        	top:80px;
-        	background-color: #99ddff;
-        }
-		
         #request {
-          top: 140px;
+          top: 80px;
           background-color: #2196F3;
           /*background-color: #66ccff;*/
         }
 
         #files {
-          top: 200px;
+          top: 140px;
           background-color: #f44336;
           /*background-color:  #33bbff;*/
         }
 
         #task {
-          top: 260px;
+          top: 200px;
           background-color: #555;
           /*background-color: #00aaff;*/
         }
 
         #todo{
-          top: 320px;
+          top: 260px;
           background-color:  #ff8000;
           /*background-color:  #0088cc;*/
         }
 
         #contact{
-          top: 380px;
+          top: 320px;
           background-color:  #800080;
           /*background-color: #005580;*/
         }
@@ -286,42 +281,53 @@
 			font-family: 'Raleway', sans-serif;
 			text-align:center;
 			font-size:20px;
+		
 		}
 		
-		  .details
+		.page
           {
-            width: 400px;
-            height: 200px;
+            width: 1000px;
+            height: 500px;
+            background-color:#1b141a;
+            border-radius: 30px;
+            display: inline-flex;
+          }
+          .details
+          {
+            width: 600px;
+            height: 500px;
             background-color: #1b141a;
             border-radius: 30px;
-            margin-left: 5px;
-            margin-top: 10px;
-            /*border: 1px solid #777;*/
-          } 
-          
+            margin-left: 130px;
+          }
           .pic
           {
             width: 350px;
             height: 500px;
             border-radius: 30px;
             background-color: #1b141a;
-            margin-left: 0px; 
-             /*border: 1px solid #777;*/
+            margin-left: 20px; 
+             border: 1px solid #777;
           } 
           .profiledetail
           {
             color: white;
-            background-color: #transparent;
+            background-color: #1b141a;
             position: relative;
-            margin-left: -60px;
+            
           }
-          
+          .profiledetails
+          {
+            color: white;
+            background-color: white;
+            position: relative;
+            
+          }
           .profile-label{
-            display:grid;
-            grid-template-columns:1fr 3fr;
+          	display:grid;
+          	grid-template-columns:1fr 3fr;
           }
-
-          .profile-label label
+          label
           {
             display: inline-flex;
             flex-direction: row;
@@ -332,181 +338,228 @@
             padding-bottom: 20px; 
             margin-left: 130px;
           }
-          .profile-label input
+          input
           {
             height: 20px;
             flex: 0 0 200px;
             margin-left: -210px;
             background-color: #777;
           }
-          #myBtn{
-          margin-left: 320px;
-        }
-
-
-
-	      .modal {
-    	      margin-left: 150px;
-		      display: none; /* Hidden by default */
-		      position: fixed; /* Stay in place */
-		      z-index: 1; /* Sit on top */
-		      padding-top: 100px; /* Location of the box */
-		      left: 0;
-		      top: 0;
-		      width: 50%; /* Full width */
-		      height: 100%; /* Full height */
-		      overflow: auto; /* Enable scroll if needed */
-		     background-color: rgb(0,0,0); /* Fallback color */
-		      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-		    }
-		
-		    /* Modal Content */
-		    .modal-content {
-		      color: white;
-		      background-color: #777;
-		      margin: auto;
-		      padding: 20px;
-		      border: 1px solid #888;
-		      width: 80%;
-		      height: 300px;
-		    }
-
-     /* Add Animation */
-    @-webkit-keyframes animatetop {
-      from {top:-300px; opacity:0} 
-      to {top:0; opacity:1}
-    }
-    
-    @keyframes animatetop {
-      from {top:-300px; opacity:0}
-      to {top:0; opacity:1}
-    }
-
-    /* The Close Button */
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .model-form{
-      color: white;
-      background-color: #1b141a;
-      width: 100%;
-      height: 240px;
-    }
-
-    .model-form label{
-      padding-bottom: 20px;
-      margin-left: 50px;
-    }
-
-    .model-form input{
-      float: right;
-      margin-right: 140px;
-    }
-
-    .model-form button{
-      margin-left:  180px;
-    }
-
-        .container {
-           /*max-width: 960px;*/
-           height: 300px;
-           margin-top: 70px;
-           margin-right: 80px;
-           padding: 20px;
-           /*background: red;*/
-        }
-         .avatar-upload {
-           position: relative;
-           max-width: 205px;
-           margin: 50px auto;
-           margin-top: -10px;
-        }
-         .avatar-upload .avatar-edit {
-           position: absolute;
-           right: 45px;
-           z-index: 1;
-           top: 10px;
-           font-size: 20px;
-        }
-
-        #ic{
-          /*background: red;*/
-          height: 30px;
-        }
-         .avatar-upload .avatar-edit input {
-              display: none;
+          #mybtn
+          {
+            width:80px;
+            height: 30px;
+            margin-left:325px;
+            cursor: pointer;
+            background-color: #777;
+            color: white;
           }
-
-         .avatar-upload .avatar-edit input + label {
-           display: inline-block;
-           width: 34px;
-           height: 15px;
-           margin-bottom: 0;
-           border-radius: 100%;
-           background: #fff;
-           border: 1px solid transparent;
-           box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-           cursor: pointer;
-           font-weight: normal;
-           transition: all 0.2s ease-in-out;
-        }
-         .avatar-upload .avatar-edit input + label:hover {
-           background: #f1f1f1;
-           border-color: #d6d6d6;
-        }
-         .avatar-upload .avatar-edit input + label:after {
-           content: "\f040";
-           font-family: 'FontAwesome';
-            position: absolute;
-           color: #757575;
-           top: 4px;
-           left: 0;
-           right: 10px;
-           text-align: right;
-           margin:auto;
-           
-        }
-         .avatar-upload .avatar-preview {
-           width: 152px;
-           height: 152px;
-           position: relative;
-           border-radius: 100%;
-           border: 6px solid #f8f8f8;
-           box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-        }
-
-       /*  .avatar-upload .avatar-preview > div {
-           width: 100%;
-           height: 100%;
-           border-radius: 100%;
-           background-size: cover;
-           background-repeat: no-repeat;
-           background-position: center;
-        }*/
-
-        .avatar-upload .avatar-preview img{
-            position: fixed;
-            color:white; 
-            margin-top: 0px;
-            margin-left: 0px;
-            border-radius: 100px;
-        }
+          .modal {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		  z-index: 1; /* Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
 		
-		input::-webkit-outer-spin-button,
-		input::-webkit-inner-spin-button {
-		  -webkit-appearance: none;
-		  margin: 0;
+		/* Modal Content */
+		.modal-content {
+		  position: relative;
+		  background-color: #fefefe;
+		  margin: auto;
+		  padding: 0;
+		  border: 1px solid #888;
+		  width: 80%;
+		  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		  -webkit-animation-name: animatetop;
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: animatetop;
+		  animation-duration: 0.4s
+		}
+		
+		/* Add Animation */
+		@-webkit-keyframes animatetop {
+		  from {top:-300px; opacity:0} 
+		  to {top:0; opacity:1}
+		}
+		
+		@keyframes animatetop {
+		  from {top:-300px; opacity:0}
+		  to {top:0; opacity:1}
+		}
+		
+		/* The Close Button */
+		.close {
+		  color: black;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: red;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.modal-header {
+		  padding: 10px 16px;
+		  color: white;
+		}
+		
+		.modal-body {padding: 2px 16px;}
+		
+		.modal-footer {
+		  padding: 2px 16px;
+		  color: white;
+		}
+		
+		.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+ .container {
+	 max-width: 960px;
+	 margin: 30px auto;
+	 padding: 20px;
+}
+ .avatar-upload {
+	 position: relative;
+	 max-width: 205px;
+	 margin: 50px auto;
+}
+ .avatar-upload .avatar-edit {
+	 position: absolute;
+	 right: 45px;
+	 z-index: 1;
+	 top: 10px;
+}
+ .avatar-upload .avatar-edit input {
+	 display: none;
+}
+ .avatar-upload .avatar-edit input + label {
+	 display: inline-block;
+	 width: 34px;
+	 height: 15px;
+	 margin-bottom: 0;
+	 border-radius: 100%;
+	 background: #fff;
+	 border: 1px solid transparent;
+	 box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+	 cursor: pointer;
+	 font-weight: normal;
+	 transition: all 0.2s ease-in-out;
+}
+ .avatar-upload .avatar-edit input + label:hover {
+	 background: #f1f1f1;
+	 border-color: #d6d6d6;
+}
+ .avatar-upload .avatar-edit input + label:after {
+	 content: "\f040";
+	 font-family: 'FontAwesome';
+	  position: absolute;
+	 color: #757575;
+	 top: 4px;
+	 left: 0;
+	 right: 10px;
+	 text-align: right;
+	 margin:suto;
+	 
+}
+ .avatar-upload .avatar-preview {
+	 width: 152px;
+	 height: 152px;
+	 position: relative;
+	 border-radius: 100%;
+	 border: 6px solid #f8f8f8;
+	 box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+ .avatar-upload .avatar-preview > div {
+	 width: 100%;
+	 height: 100%;
+	 border-radius: 100%;
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 background-position: center;
+}
+ 
+ 
+ 
+ 
+        .attendence-modal {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		  z-index: 1; /* Sit on top */
+		  padding-top: 100px; /* Location of the box */
+		  left: 0;
+		  top: 0;
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+		
+		/* Modal Content */
+		.attendence-modal-content {
+		  position: relative;
+		  background-color: #fefefe;
+		  margin: auto;
+		  padding: 0;
+		  border: 1px solid #888;
+		  width: 80%;
+		  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		  -webkit-animation-name: animatetop;
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: animatetop;
+		  animation-duration: 0.4s
+		}
+		
+		/* Add Animation */
+		@-webkit-keyframes animatetop {
+		  from {top:-300px; opacity:0} 
+		  to {top:0; opacity:1}
+		}
+		
+		@keyframes animatetop {
+		  from {top:-300px; opacity:0}
+		  to {top:0; opacity:1}
+		}
+		
+		/* The Close Button */
+		.attendence-close {
+		  color: black;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		
+		.attendence-close:hover,
+		.attendence-close:focus {
+		  color: red;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.attendence-modal-header {
+		  padding: 10px 16px;
+		  color: white;
+		}
+		
+		.attendence-modal-body {padding: 2px 16px;}
+		
+		.attendence-modal-footer {
+		  padding: 2px 16px;
+		  color: white;
 		}
 		
     </style>
@@ -518,7 +571,7 @@
     <div class="header">
         <div class="logo">
         <div class="logoname">
-        	<a class="re" href="remote_home.jsp"><i class="fa fa-podcast" aria-hidden="true"></i></a>
+        	<a class="re" href="E:/remote/remote_homepage.html"><i class="fa fa-podcast" aria-hidden="true"></i></a>
             <h4 class="text1">Remote</h4>
          </div>  
         </div>
@@ -527,9 +580,10 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                              
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   				
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
             </div>
             <div class="icons">
                 <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
@@ -540,122 +594,243 @@
 
    <div id="mySidenav" class="sidenav">
       <a href="remote_chat.jsp" id="chat">Chat  <i style="float:right" class="fa fa-commenting-o" aria-hidden="true"></i></a>
-      <a href="remote_dash.jsp" id="attendance">Dash<i class="fa fa-check-circle" aria-hidden="true"></i></a>
       <a href="remote_request.jsp" id="request">Request <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
       <a href="remote_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="remote_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
       <a href="remote_schedule.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
       <a href="remote_contact.jsp" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
     </div>
-    
-   <%
-     UserModel i = (UserModel)session.getAttribute("user");
-   %>
+   
     
     <div class="content">
-    		<div class="page">
-            <div class="details">
-                <h2 style ="color :white; text-align:center" >PROFILE</h2>
-                <div class="profiledetail">
-                  <div class="profile-label">
-                     <label for ="name">Name : </label>
-                     <label for ="name" style="margin-left: -200px;"><%=i.getName() %></label>
-                  </div>
-                  <div class="profile-label">
-                      <label for ="regno">Register No. : </label>
-                      <label for ="name" style="margin-left: -200px;"><%=i.getRegNo() %></label>
-                  </div>
-                  <div class="profile-label">
-                      <label for ="mailid">Email : </label>
-                      <label for ="name" style="margin-left: -200px;"><%=i.getEmail() %></label>
-                  </div>
-                  <div class="profile-label">
-                      <label for ="gender">Gender : </label>
-                      <label for ="name" style="margin-left: -200px;"><%=i.getGender() %></label>
-                  </div>
-                  <div class="profile-label">
-                      <label for ="dept">Department : </label>
-                      <label for ="name" style="margin-left: -200px;"><%=i.getDept() %></label>
-                  </div>
-                 <div class="profile-label">
-                   <label for ="contact">Contact No. : </label>
-                   <label for ="name" style="margin-left: -200px;"><%=i.getPhoneNumber() %></label>
-                 </div>
-               </div> 
-               <button id="myBtn">Update Profile</button>
-            </div>
+   		<%
+     UserModel i = (UserModel)session.getAttribute("user");
+      %>
+        <div class="page">
+      <div class="details">
+        <h2 style ="color :white; text-align:center" >PROFILE</h2>
+    	  <div class="profiledetail">
+    	  <form method="post" action="profile">
+	    	 <div class="profile-label">
+		    	 <label for ="name">Name : </label>
+		         <input style="margin-left:-150px;" name="uname" for ="name" value="<%= i.getName() %>"></input>
+	          </div>
+	    	 <div class="profile-label">
+		    	 <label for ="regno">Register No. : </label>
+		          <input style="margin-left:-150px;" name="regno" for ="name"value="<%=i.getRegNo()%>"></input>
+	          </div>
+	    	 <div class="profile-label">
+		    	 <label for ="mailid">Email : </label>
+		          <input readonly style="margin-left:-150px;" name="email" for ="name" value="<%= i.getEmail() %>"></input>
+	          </div>
+	    	 <div class="profile-label">
+		    	 <label for ="gender">Gender : </label>
+		          <input style="margin-left:-150px;" name="gender" for ="name" value="<%= i.getGender() %>"></input>
+	          </div>
+	    	 <div class="profile-label">
+		    	 <label for ="dept">Department : </label>
+		          <input style="margin-left:-150px;" name="dept" for ="name" value="<%= i.getDept() %>"></input>
+	          </div>
+	    	 <div class="profile-label">
+		    	 <label for ="contact">Contact No. : </label>
+		          <input style="margin-left:-150px;" name="contact" for ="name" value="<%= i.getPhoneNumber() %>"></input>
+	          </div>
+			      <button style="margin-left:250px;" type="submit" id="myBtn">Update Profile</button>
+			</form>
+          </div> 
 
-      <div id="myModal" class="modal">
-          <div class="modal-content">
-              <div class="modal-header">
-                <span class="close">&times;</span>
-                <p>UPDATE YOUR PROFILE</p>
-            </div>
-            <div class="modal-body">
-                  <form class="model-form" action="profile" method="post"><br>
-                    <label for ="name">NAME : </label>
-                    <input  type="text" name="name" value="<%= i.getName() %>" ><br><br>
-                    <label for ="name">REGNO : </label>
-                    <input  type="text" name="regno" value="<%= i.getRegNo() %>" ><br><br>
-                    <label for ="gender">GENDER : </label>
-                    <input type="text" name="gender" value="<%= i.getGender() %>" ><br><br>
-                    <label for ="dept">DEPARTMENT : </label>
-                    <input type="text" name="dept" value="<%= i.getDept() %>" ><br><br>
-                    <label for ="contact">CONTACT : </label>
-                    <input type="text" name="ph_no" value="<%= i.getPhoneNumber()%>" style="-moz-appearance: textfield;" ><br><br>
-                    <button type="submit" id= "btn" style="margin-left:300px;">UPDATE</button><br>
-                  </form> 
-              </div>
-              <div class="modal-footer">
-                <h3></h3>
-              </div>
-            </div>
-          </div>
-      </div>
-      <hr>
-      
-       <form action="ProfilePictureUpload?action=image" method="post" class="container" enctype="multipart/form-data">
-              <div class="avatar-upload">
-                <div class="avatar-edit">
-                  <input type='file' id="imageUpload" name ="profile_img"/>
-                  <label for="imageUpload" id="ic"></label>
-                </div>
-                <div class="avatar-preview">
-                  <img id="imagePreview" src="getImage.jsp?email=<%=i.getEmail()%>" alt="dp" width="152px" height="152px" />
-                </div>
-              </div>
-          <button type="submit" id="pic-btn" style="margin-left: 170px;margin-top: -30px;">Upload</button>
-          <br><br>
-          <label style="color: white;padding-top: 30px;margin-left:30px;font-size: 30px;"><%=i.getName() %></label>
-      </form>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2></h2>
     </div>
     
-     <script type="text/javascript">
-		              // Get the modal
-		    var modal = document.getElementById("myModal");
-		
-		    // Get the button that opens the modal
-		    var btn = document.getElementById("myBtn");
-		
-		    // Get the <span> element that closes the modal
-		    var span = document.getElementsByClassName("close")[0];
-		
-		    // When the user clicks the button, open the modal 
-		    btn.onclick = function() {
-		      modal.style.display = "block";
-		    }
-		
-		    // When the user clicks on <span> (x), close the modal
-		    span.onclick = function() {
-		      modal.style.display = "none";
-		    }
-		
-		    // When the user clicks anywhere outside of the modal, close it
-		    window.onclick = function(event) {
-		      if (event.target == modal) {
-		        modal.style.display = "none";
-		      }
-		    }
+    <div class="modal-body">
+    	  <form class="profiledetail" action="Profile" method="post">
+          <label for ="name">Name : </label>
+          <input  type="text" name="name" value="<%= i.getName() %>" ><br>
+          <label for ="gender">Gender : </label>
+          <input type="text" name="gender" value="<%= i.getGender() %>" ><br>
+          <label for ="dept">Department : </label>
+          <input type="text" name="dept" value="<%= i.getDept() %>" ><br>
+          <label for ="contact">Contact No. : </label>
+          <input type="number" name="ph_no" value="<%= i.getPhoneNumber() %>" ><br>
+          <button type="submit" id= "btn">UPDATE</button>
+        </form> 
+    </div>
+    <div class="modal-footer">
+      <h3></h3>
+    </div>
+  </div>
+
+</div>
+    </div>
+</div>
+</div>
+    <script type="text/javascript">
+			
+ // Get the attendence modal
+    var attendenceModal = document.getElementById("attendence-modal");
+
+    // Get the button that opens the modal
+    var attendenceBtn = document.getElementById("attendence-btn");
+
+    // Get the <span> element that closes the modal
+    var attendenceSpan = document.getElementsByClassName("attendence-close")[0];
+
+    // When the user clicks the button, open the modal 
+    //attendenceBtn.onclick = function() {
+   // 	attendenceModal.style.display = "block";
+   // }
+
+    // When the user clicks on <span> (x), close the modal
+    attendenceSpan.onclick = function() {
+    	attendenceModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == attendenceModal) {
+    	  attendenceModal.style.display = "none";
+      }
+    }
+    
+    
+ // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    
+    		function updateScroll(){
+	      			var element = document.getElementById("bm");
+	      			element.scrollTop = element.scrollHeight;
+	  		}		
+    
+    
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
     </script>
-   	</body>
+</body>
 </html>

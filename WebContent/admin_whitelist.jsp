@@ -166,7 +166,7 @@
 
         #request {
           top:140px;
-          background-color:#2196F3;;
+          background-color:#99ddff;;
         }
 
         #files {
@@ -192,6 +192,71 @@
           /*background-color: #005580;*/
         }
   
+        
+        .dia{
+        	left: -270%;
+			top: 270%;
+        	margin:auto;
+        	width:150%;
+        	height:130%;
+        	position:absolute;
+        	z-index:100;
+        	background-color:#F4FFEF;
+        	border:1px dotted black;"
+       }
+       
+       
+       .blur{
+          -webkit-filter: blur(2px);
+          -moz-filter: blur(2px);
+          -o-filter: blur(2px);
+          -ms-filter: blur(2px);
+          filter: blur(2px);    
+        }
+        
+		#overlay    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
+		
+		
+		#overlay1    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
+		
+		#popup {
+		    position: absolute;
+		    width: 400px;
+		    height: 200px;
+		    background: rgb(255,255,255);
+		    border: 5px solid rgb(90,90,90);
+		    left: 0px;
+		    right: 0px;
+		    top: 0px;
+		    bottom: 0px;
+		    margin: auto;
+		    text-align:center;
+		 }
+		
+		.breakQuotes{
+			font-family: 'Raleway', sans-serif;
+			text-align:center;
+			font-size:20px;
+		
+		}
       #select{
           position: absolute;
           padding: 15px;
@@ -227,11 +292,11 @@
           margin-left: 170px;
           margin-top: 20px;
           display: inline-block;
-          border-radius: 5px;
-           border: 2px solid #dedede;
+          border-radius: 30px;
         }
-		
-		  /* Style the close button */
+
+
+          /* Style the close button */
           .close {
             position: absolute;
             right: 0;
@@ -270,7 +335,7 @@
             padding: 10px;
             float: left;
             font-size: 16px;
-            border-radius:5px;
+            border-radius:25px;
             outline:none;
           }
 
@@ -286,44 +351,47 @@
             cursor: pointer;
             transition: 0.3s;
             border-radius: 0;
-            border-radius:5px;
+            border-radius:25px;
             outline:none;
           }
+
           .addBtn:hover {
             background-color: #bbb;
           }
-		  .alltasks{
-		    margin-top:20px;
-		    height:auto;
-		  	max-height:300px;
-		  	overflow-y:scroll;
-		  	overflow-x:hidden;
-		  	width:60%;
-		  	margin:auto;
-		  	text-align:center;
-		  }
-		  .task{
-		    color:black;
-		    font-size:1.1rem;
-		  	display:flex;
-		  	justify-content:space-between;
-		  	height:30px;
-		  	padding:5px 20px;
-		  	margin-top:5px;
-		  	background-color:grey;
-		  }
-		  .task div{
-		  	margin-top:7px;
-		  }
-		  #cross{
-			  color:black;
-			  margin-top:7px;
-		  }
-		  ::-webkit-scrollbar {
-            width: 0px; 
-            background: transparent; 
+      .alltasks{
+        margin-top:20px;
+        height:auto;
+        max-height:300px;
+        overflow-y:scroll;
+        overflow-x:hidden;
+        font-family: Arial;
+      }
+      .task{
+        color:black;
+        font-size:1.4rem;
+        display:flex;
+        justify-content:space-between;
+        height:30px;
+        padding:5px 20px;
+        margin-top:5px;
+        background-color:grey;
+      }
+      .task div{
+        margin-top:7px;
+      }
+      #cross{
+      color:black;
+      margin-top:7px;
+      }
+	  ::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
         }
-	
+        /* Optional: show position indicator in red */
+        ::-webkit-scrollbar-thumb {
+            background: #FF0000;
+        }
+		
     </style>
 </head>
 
@@ -342,9 +410,11 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                               
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="admin_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -369,7 +439,7 @@
      <div class="content">
       <form id="myDIV" class="header1" method="post" action="Whitelist?action=add">
         <h2 style="margin:5px; float: left; margin-top: 40px;">WHITELIST</h2><br><br>
-        <input type="text" id="myInput" name="email" placeholder="enter email to add..." autocomplete="off" required>
+        <input type="text" id="myInput" name="email" placeholder="enter email to add..." required>
         <button type="submit" class="addBtn" >Add</button>
       </form>
       
@@ -377,6 +447,13 @@
 	      UserModel user = (UserModel) session.getAttribute("user");
 	      List<UserModel> users = UserDAO.getAllStudents();
 		  session.setAttribute("allusers",users);
+      		for(UserModel i:users)
+      		{
+      			if(i.getIswhitelist()==0)
+      			{
+      				System.out.println("ueebu"+i.getName());
+      			}
+      		}
       %>
 
       <div class="alltasks">
@@ -385,8 +462,8 @@
        if(i.getIswhitelist()==1)
        {%>
         <div class="task">
-	        <div><%=i.getEmail() %>          (<%=i.getName() %>)</div>
-	        <a href="Whitelist?action=delete&email=<%=i.getEmail()%>"><i id="cross" style="color: white" class="fa fa-times" aria-hidden="true"></i></a>
+	        <div><%=i.getEmail() %>(<%=i.getName() %>)</div>
+	        <a href="Whitelist?action=delete&email=<%=i.getEmail()%>"><i id="cross" style="color: white" class="fa fa-sign-out" aria-hidden="true"></i></a>
         </div>
 		<% }}}%>
       </div>

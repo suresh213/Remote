@@ -1,8 +1,6 @@
 package com.remote.control;
 
 
-import com.remote.dao.RequestDAO;
-import com.remote.model.UserModel;
 import com.remote.util.*;
 import java.io.IOException;
 
@@ -14,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 /**
@@ -36,12 +33,17 @@ public class ServerReq extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action=request.getParameter("action");
-		System.out.println(action);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 
 		
-		
-		if(action.equals("add")){
-			try { 
+		try { 
 	            Connection con = DBConnection.getConnection(); 
 	            PreparedStatement st = con.prepareStatement("insert into requesttable(`name`, `email`, `department`, `purpose`, `fromDate`, `toDate`, `reason`) values(?, ?, ?, ?, ?, ?, ?)"); 
 	  
@@ -60,19 +62,8 @@ public class ServerReq extends HttpServlet {
 	        catch (Exception e) { 
 	            e.printStackTrace(); 
 	        } 
-		}
-		else if(action.equals("cancel")){
-			int requestId=Integer.parseInt(request.getParameter("requestId"));
-			RequestDAO.deleteRequest(requestId);
-			response.sendRedirect("remote_request.jsp");
-		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	  
+		
 	}
 
 }

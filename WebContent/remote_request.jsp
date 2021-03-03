@@ -1,7 +1,6 @@
-<%@page import="com.remote.util.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page import="java.util.List,java.util.ArrayList,com.remote.dao.*,com.remote.model.*,java.sql.*"%>
+ <%@ page import="java.util.List,java.util.ArrayList,com.remote.dao.*,com.remote.model.*"%>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -161,31 +160,26 @@
           /*background-color: #99ddff ;*/
         }
 
-		#attendance{
-        	top:80px;
-        	background-color: #99ddff;
-        }
-		
         #files {
-          top: 200px;
+          top: 140px;
           background-color: #f44336;
           /*background-color:  #33bbff;*/
         }
 
         #task {
-          top: 260px;
+          top: 200px;
           background-color: #555;
           /*background-color: #00aaff;*/
         }
 
         #todo{
-          top: 320px;
+          top: 260px;
           background-color:  #ff8000;
           /*background-color:  #0088cc;*/
         }
 
         #contact{
-          top: 380px;
+          top: 320px;
           background-color:  #800080;
           /*background-color: #005580;*/
         }
@@ -198,7 +192,7 @@
           font-size: 20px;
           color: white;
           border-radius: 0 5px 5px 0;
-          margin-top: 140px;
+          margin-top: 80px;
           background-color: #2196F3;
           color: white;
         }
@@ -209,13 +203,13 @@
         }
 
         .content{
-          width: 630px;
+          width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           /*background-color: white;*/
           margin-left: 170px;
           display: inline-block;
-          border-radius: 5px;
+          border-radius: 30px;
           border: 2px solid #dedede;
         }
 
@@ -223,7 +217,7 @@
           display: inline-flex;
           flex-direction: row;
           justify-content: flex-start;
-          margin-left: 50px;
+          margin-left: 270px;
           width: 400px;
           line-height: 26px;
           margin-bottom: 10px;
@@ -235,7 +229,7 @@
         input {
           height: 20px;
           flex: 0 0 200px;
-          margin-left: -280px;
+          margin-left: -190px;
           background-color: white;
           border: none;
         }
@@ -243,7 +237,7 @@
         .requestform{ 
           margin-top: -30px;
           margin-left: 00px;
-          width: 620px;
+          width: 1000px;
           background-color: transparent;
           border-bottom-right-radius: 30px;
           border-bottom-left-radius: 30px;
@@ -258,44 +252,74 @@
           cursor: pointer;
         }
         
-        .sent-items{
-        	background:red;
-        	width:300px;
-        	color:white;
-        	margin-left:880px;
-        	margin-top:-450px;
-        	
+                .dia{
+        	left: -270%;
+			top: 270%;
+        	margin:auto;
+        	width:150%;
+        	height:130%;
+        	position:absolute;
+        	z-index:100;
+        	background-color:#F4FFEF;
+        	border:1px dotted black;"
+       }
+       
+       
+       .blur{
+          -webkit-filter: blur(2px);
+          -moz-filter: blur(2px);
+          -o-filter: blur(2px);
+          -ms-filter: blur(2px);
+          filter: blur(2px);    
         }
         
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-          outline: none;
-          border: none;
-          border-top-left-radius:30px;
-          border-top-right-radius:30px;
-          color:black;
-        }
-
-        th {
-          text-align: center;
-          padding: 10px;
-          height: 20px;
-        }
-        
-        td{
-        	 text-align: center;
-        	padding:20px;
-        }
-
-        tr {
-          background-color: #dddddd;
-        }
+		#overlay    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
 		
+		
+		#overlay1    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
+		
+		#popup {
+		    position: absolute;
+		    width: 400px;
+		    height: 200px;
+		    background: rgb(255,255,255);
+		    border: 5px solid rgb(90,90,90);
+		    left: 0px;
+		    right: 0px;
+		    top: 0px;
+		    bottom: 0px;
+		    margin: auto;
+		    text-align:center;
+		 }
+		
+		.breakQuotes{
+			font-family: 'Raleway', sans-serif;
+			text-align:center;
+			font-size:20px;
+		
+		}
+        
     </style>
 </head>
-<body>
+<body onload="preventBack()">
     <div class="header">
         <div class="logo">
                 <a class="re" href="remote_home.jsp"><i class="fa fa-podcast" aria-hidden="true"></i><span class="text1">remote</span></a>
@@ -305,9 +329,11 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                                
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -317,7 +343,6 @@
 
    <div id="mySidenav" class="sidenav">
        <a href="remote_chat.jsp" id="chat">Chat  <i class="fa fa-commenting-o" aria-hidden="true"></i></a>
-      <a href="remote_dash.jsp" id="attendance">Dash<i class="fa fa-check-circle" aria-hidden="true"></i></a>
       <a href="remote_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="remote_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
       <a href="remote_todo.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
@@ -325,18 +350,20 @@
     </div>
 
     <div id="select">
-        <a href="remote_request.jsp" id="request">Request     <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
+        <a href="#" id="request">Request     <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
     </div>
 
     <div class="content">
     	<% UserModel user = (UserModel)session.getAttribute("user");
+    	
   			String	userName = user.getName();
       		String email= user.getEmail();
+      		String regno = user.getRegNo();
       		String department = user.getDept();
  		%>
     
-        <h2 style="padding-left: 200px;color:white">REQUEST FORM</h2><br>
-        <form class="requestform" method="post" action="ServerReq?action=add">
+        <h2 style="padding-left: 350px;color:white">REQUEST FORM</h2><br>
+        <form class="requestform" method="post" action="ServerReq">
           <br>
           <label for="dummy1">NAME</label>
           <input readonly id="dummy1" name="name" value="<%= userName%>"><br>
@@ -346,7 +373,7 @@
           <input readonly id="dummy3" name="department" value="<%= department%>"><br>
 
           <label for="purpose">PURPOSE</label>
-          <select style="margin-left: -280px;padding-right: 20px; padding-top: 5px;background-color: white" name="purpose" id="purpose" required="">
+          <select style="margin-left: -190px;padding-right: 20px; padding-top: 5px;background-color: white" name="purpose" id="purpose" required="">
             <option value="leave">leave</option>
             <option value="od">od</option>
           </select>
@@ -358,35 +385,108 @@
           <input style="margin-left: 30px" type="DATE" id="toDate" name="toDate"><br>
       </div>
           <label for="discription">REASON</label>
-          <textarea required style="background-color:white;flex: 0 0 200px;margin-left: -280px;" id="discription" name="discription" cols="56"></textarea><br>
+          <textarea required style="background-color:white;flex: 0 0 200px;margin-left: -190px;" id="discription" name="discription" cols="56"></textarea><br>
           <button id="requestButton" type="submit" style="margin-left: 480px;margin-bottom: 10px;">REQUEST</button>
           <br>
       </form>
     </div>
-    
-     <div class="sent-items">
-          <table>
-          	<th>purpose</th>
-          	<th>date</th>
-          	<th>delete</th>
-          	<% try{
-				Connection con = DBConnection.getConnection();
-      			String query = "select * from requesttable where email = ? AND status = 0";
-      			PreparedStatement ps = con.prepareStatement(query);
-      			ps.setString(1, user.getEmail());
-    			ResultSet rs = ps.executeQuery();
-    			while(rs.next()){
-          	%>
-          	<tr>
-          		<td><%= rs.getString("purpose") %></td>
-          		<td><%= rs.getString("fromDate") %></td>
-          		<td><a href="ServerReq?action=cancel&requestId=<%=rs.getInt("requestId")%>">cancel</a></td>
-          	</tr>
-          	<%}}catch(Exception e){System.out.println(e.getMessage());} %>
-          </table>
-        </div>
 
     <script type="text/javascript">
+    	
+
+	window.onload = function(){
+		var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+		if(teabreak===true)
+		{
+			myBlurFunction(1);
+		}
+		else if(teabreak===false){
+			myBlurFunction(0);
+		}
+	}
+
+	window.onload = function(){
+		var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+		if(lunchbreak===true)
+		{
+			myBlurFunction1(1);
+		}
+		else if(lunchbreak===false){
+			myBlurFunction1(0);
+		}
+	}
+
+
+
+    myBlurFunction = function(state) {
+        var containerElement = document.getElementById('main_container');
+        var overlayEle = document.getElementById('overlay');
+		if (state) {
+            overlayEle.style.display = 'block';
+            containerElement.setAttribute('class', 'blur');
+        } else {
+            overlayEle.style.display = 'none';
+            containerElement.setAttribute('class', null);
+        }
+    };
+    
+	  myBlurFunction1 = function(state) {  
+	    var overlayEle = document.getElementById('overlay1');
+		 if (state) {
+	        overlayEle.style.display = 'block';
+	        containerElement.setAttribute('class', 'blur');
+	    } else {
+	        overlayEle.style.display = 'none';
+	        containerElement.setAttribute('class', null);
+	    }
+	};
+	    
+
+	
+	
+	var countDownDate = new Date();
+	countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+	
+	 var x = setInterval(function() {
+	 var now = new Date().getTime();
+	 var distance = countDownDate - now;
+	 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+	 if (distance < 0) {
+	    clearInterval(x);
+	    document.getElementById("ld").innerHTML = "EXPIRED";
+	  }
+	}, 1000);
+
+	
+	
+	var breaktime = new Date();
+	breaktime.setMinutes( breaktime.getMinutes() + 15 );
+	
+	var y = setInterval(function(){
+		var cur = new Date().getTime();
+		var dif = breaktime - cur;
+		var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+		var sec = Math.floor((dif % (1000 * 60)) / 1000);
+		document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+		if (dif < 0) {
+		    clearInterval(y);
+		    document.getElementById("td").innerHTML = "EXPIRED";
+		}
+	},1000);
+
+    
+    
+    
+    
+        function preventBack() { 
+            window.history.forward();  
+        } 
+          
+        setTimeout("preventBack()", 0); 
+        
+        window.onunload = function () { null }; 
 
     </script>
 </body>

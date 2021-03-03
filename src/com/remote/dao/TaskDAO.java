@@ -12,9 +12,9 @@ import com.remote.model.TaskModel;
 import com.remote.util.DBConnection;
 
 public class TaskDAO {
-	
 	public static List<TaskModel> getAllTask()
 	{
+
 		List<TaskModel> t = new ArrayList<TaskModel>();
 		try{ 
 			Connection con = DBConnection.getConnection();
@@ -68,6 +68,7 @@ public class TaskDAO {
 		}
 		return t;
 	}
+	
 	
 	public static void updateTask(String taskname,String date,String type,String assign,String hour,String ftime,String tTime,String link){
 		int result=0;

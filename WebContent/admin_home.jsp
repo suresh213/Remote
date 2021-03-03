@@ -5,24 +5,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta charset="ISO-8859-1">
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="ISO-8859-1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Remote|Home</title>
-    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
-    	 ::-webkit-scrollbar {
-            width: 0px;  /* Remove scrollbar space */
-            background: transparent;  /* Optional: just make scrollbar invisible */
-        }
-        /* Optional: show position indicator in red */
-        ::-webkit-scrollbar-thumb {
-            background: #FF0000;
-        }
-    	
         body{
             margin: 0;
             padding: 0;
@@ -273,7 +263,6 @@
           margin-left: 30px;
           margin-top: 20px;
           border-radius: 5px;
-          
         }
 
         .sch{
@@ -284,7 +273,14 @@
           display: flex;
         }
 
-       
+        ::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+        /* Optional: show position indicator in red */
+        ::-webkit-scrollbar-thumb {
+            background: #FF0000;
+        }
 
         table {
           border-collapse: collapse;
@@ -372,25 +368,23 @@
 		
 		.tab{
 			 border: 0.5px solid #dedede;
-		
 		}
 		.fun{
 			margin-top:60px;
 			text-decoration:none;
-			 overflow:hidden;
 		}
     </style>
 </head>
 
 
-<body>
+<body >
       <%
       //List<UserModel> usersOnline = UserDAO.getAllStudents();
     	UserModel user = (UserModel)session.getAttribute("user");
     	
   		String	userName = user.getName();
       	String email= user.getEmail();
-      	
+
     	List<StatusModel> usersOnline = StatusDAO.getAllStudentsOnline();
     	List<StatusModel> usersOffline = StatusDAO.getAllStudentsOffline();
     	%>
@@ -412,7 +406,7 @@
                 <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea" style="text-decoration:none">END</a></div></div>
 				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red;"></div><br><br><a href="Break?action=endlunch" style="text-decoration:none">END</a></div></div> 
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red;"></div><br><br><a href="Break?action=endlunch" style="text-decoration:none">END</a></div></div>
             </div>
             <div class="icons">
                 <a href="admin_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
@@ -434,7 +428,7 @@
     <div class="details">
     	<p class="username" style="margin-bottom:0px;font-family: 'Raleway', sans-serif;">Hey , <%= userName %></p>
     </div>
-    <div class="content">
+    <div class="content" id="main">
         <div class="home">
             <div class="online">
               <h3 style="color: #777"><i style="color: green;font-size: 10px;margin-top:-5px;" class="fa fa-circle" aria-hidden="true"></i>  online<h3 style="color: #777;font-family:Arial"> (<%=usersOnline.size()%>)</h3></h3>
@@ -444,7 +438,7 @@
                 <% for(StatusModel i : usersOnline){ %>
                 <tr>
                   <td><%= i.getName() %></td>
-                  <td><%= i.getJob() %></td>
+                  <td><%= i.getDepartment() %></td>
                 </tr>
          		<%} %>
               </table>
@@ -462,7 +456,7 @@
                 <% for(StatusModel i : usersOffline){ %>
                 <tr>
                   <td><%= i.getName() %></td>
-                  <td style="padding-left:100px;"><%= i.getJob() %></td>
+                  <td><%= i.getDepartment() %></td>
                 </tr>
          		<%} %>
               </table>
@@ -491,17 +485,12 @@
               <div class="fun">
               <table class="tab">
                 <tr>
-                <td>set attendance</td>
-                <td><a href="Attendence?action=setattendence" style="color:white;text-decoration:none;"><button>Set attendance</button></a></td>
+                <td>generate attendance</td>
+                <td><a href="" target="blank" style="color:white;text-decoration:none;"><button>Set attendance</button></a></td>
                 </tr>
                 <tr>
                 <td>generate csv</td>
-                <td><a href="Attendence?action=getattendence" target="blank" style="color:white;text-decoration:none;"><button>Get attendance</button><br></a></td>
-                </tr>
-                <tr>
-                <td>post result</td>
-                <td>
-                  <a href="page.jsp" target="blank" style="color:white;text-decoration:none;"><button style="width:100%">Post</button><br></a></form></td>
+                <td "><a href="Attendence?action=getattendence" target="blank" style="color:white;text-decoration:none;"><button>Get attendance</button><br></a></td>
                 </tr>
               </table>
 				</div>
@@ -511,48 +500,57 @@
 
     <script type="text/javascript">
     
-		    window.onload = function(){
-				var teabreak = <%= session.getAttribute("teabreak")%>
-				if(teabreak==true)
-				{
-					myBlurFunction(1);
-				}else if(teabreak==false){
-					myBlurFunction(0);
-				}
-
+    		
+			
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
     			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
-    			if(lunchbreak==true)
+    			if(lunchbreak===true)
     			{
     				myBlurFunction1(1);
     			}
-    			else if(lunchbreak==false){
+    			else if(lunchbreak===false){
     				myBlurFunction1(0);
     			}
     		}
-    		    
+    
+    
+    
 		    myBlurFunction = function(state) {
 		        var containerElement = document.getElementById('main_container');
 		        var overlayEle = document.getElementById('overlay');
 				if (state) {
 		            overlayEle.style.display = 'block';
-		           // containerElement.setAttribute('class', 'blur');
+		            containerElement.setAttribute('class', 'blur');
 		        } else {
 		            overlayEle.style.display = 'none';
-		           // containerElement.setAttribute('class', null);
+		            containerElement.setAttribute('class', null);
 		        }
 		    };
 		    
-	   	   myBlurFunction1 = function(state) {  
+	   	  myBlurFunction1 = function(state) {  
 			    var overlayEle = document.getElementById('overlay1');
 				 if (state) {
 			        overlayEle.style.display = 'block';
-			       // containerElement.setAttribute('class', 'blur');
+			        containerElement.setAttribute('class', 'blur');
 			    } else {
 			        overlayEle.style.display = 'none';
-			        //containerElement.setAttribute('class', null);
+			        containerElement.setAttribute('class', null);
 			    }
 			};
 			    
+
+    		
 			
 			var countDownDate = new Date();
 			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
@@ -585,15 +583,25 @@
 				    document.getElementById("td").innerHTML = "EXPIRED";
 				}
 			},1000);
-    		
-			$(document).ready(function(){
-				 $(".content").load("refreshAdmin.jsp");
-		       setInterval(function() {
-		           $(".content").load("refreshAdmin.jsp");
-		       }, 1000);
-		    });
 			
 			
+    
+    	<!--var auto_refresh = setInterval(
+    		function () {
+    		    $("#main").load(window.location.href + " #main" );
+    	}, 1000);-->
+   		 
+
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
     </script>
 </body>
 </html>

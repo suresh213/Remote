@@ -1,6 +1,6 @@
 package com.remote.control;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import org.apache.catalina.ha.backend.Sender;
+import org.apache.catalina.ha.backend.Sender;
 
 import com.remote.dao.UserDAO;
 import com.remote.model.UserModel;

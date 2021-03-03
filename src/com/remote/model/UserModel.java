@@ -8,25 +8,23 @@ public class UserModel {
 	private String email;
 	private String password;
 	private Blob profile_pic;
-	private String phone_number;
+	private int phone_number;
 	private String gender;
 	private String dept;
 	private int iswhitelist;
-	private int isAdmin;
-
+	
 
 	public UserModel() {
 		super();
 	}
 
-	public UserModel(String reg_no, String name, String password, String email, Blob profile_pic,String mob) {
+	public UserModel(String reg_no, String name, String password, String email, Blob profile_pic) {
 		super();
 		this.reg_no = reg_no;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.profile_pic = profile_pic;
-		this.phone_number = mob;
 	}
 
 //	public int getUserId() {
@@ -82,11 +80,11 @@ public class UserModel {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phone_number;
 	}
 
-	public void setPhoneNumber(String phone_number) {
+	public void setPhoneNumber(int phone_number) {
 		this.phone_number = phone_number;
 	}
 
@@ -106,14 +104,5 @@ public class UserModel {
 	public void setIswhitelist(int iswhitelist) {
 		this.iswhitelist = iswhitelist;
 	}
-	
-	public int getIsAdmin() {
-		return isAdmin;
-	}
-
-	public void setIsAdmin(int isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
 	
 }

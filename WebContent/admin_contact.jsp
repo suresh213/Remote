@@ -192,13 +192,13 @@
         .content{
           width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           margin-left: 170px;
           display: flex;
           flex-wrap: wrap;
           position: absolute;
           max-width: 1000px;
-          border-radius: 5px;
+          border-radius: 30px;
           font-family: 'Raleway', sans-serif;
           margin-top:10px;
            border: 2px solid #dedede;
@@ -297,7 +297,7 @@
           width: 150px;
           height: 150px;
           perspective: 1000px;
-          margin-top: 0px;
+          margin-top: -200px;
           margin-left: 20px;
         }
 
@@ -358,9 +358,11 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                                
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="admin_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -372,7 +374,7 @@
    	  <a href="admin_chat.jsp" id="chat">Chat  <i class="fa fa-commenting-o" aria-hidden="true"></i></a>
       <a href="admin_request.jsp" id="request">Request <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
       <a href="admin_whitelist.jsp" id="attendance">whitelist<i class="fa fa-check-circle" aria-hidden="true"></i></a>
-      <a href="admin_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
+      <a href="" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="admin_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
       <a href="admin_schedule.jsp" id="todo">Scheme  <i  Style="margin-left:5px;" class="fa fa-pencil-square" aria-hidden="true"></i></a> 
    </div>
@@ -383,7 +385,6 @@
    
    	<%
     	List<UserModel> users = UserDAO.getAllStudents();
-   		System.out.println(users);
     %>
 
     <div class="content">
@@ -394,7 +395,7 @@
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
-            <img src="getImage.jsp?email=<%=i.getEmail()%>" alt="Avatar" style="width:150px;height:150px;"> 
+            <img src="E:\project_pics\avatar.png" alt="Avatar" style="width:70px;height:70px;"> 
           </div>
           <div class="flip-card-back">
               <p><%= i.getName() %></p>
@@ -411,7 +412,90 @@
 
 
     <script type="text/javascript">
-    	
+    
+			
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
  		
     </script>
 </body>

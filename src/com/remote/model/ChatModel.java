@@ -1,16 +1,10 @@
 package com.remote.model;
 
-import java.io.Serializable;
-
-public class ChatModel implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+public class ChatModel {
 	private String email;
 	private String username;
 	private String message;
+	private String time;
 	
 	public String getEmail() {
 		return email;
@@ -30,5 +24,11 @@ public class ChatModel implements Serializable{
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 }

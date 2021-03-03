@@ -1,7 +1,7 @@
 package com.remote.control;
   
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.remote.model.*;
 import com.remote.util.*;
 import com.remote.dao.*;
+import java.util.*;
 
 /**
  * Servlet implementation class Login
@@ -43,55 +44,54 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
-		System.out.println(email);
+		String err = null;
 		HttpSession session = request.getSession();
-		response.setContentType("text/html");
-	    PrintWriter out = response.getWriter();
 		try {
+			// check email already exists in database
+				UserModel user = UserDAO.getStudentByEmail(email);
+//			System.out.print(user.isEmpty());
 			
-			// check user exists in database
-			UserModel user = UserDAO.getStudentByEmail(email);
-			System.out.println("user-> "+user);
-			if(user.getName()!=null) {
-				// user exists
+			
+			if(user!=null) {
+				
+				String	name=user.getName();
 				String	dbPassword = user.getPassword();
+				
+				
 				HashPassword hashPassword = new HashPassword();
 				boolean isAuthenticated = hashPassword.login(password,dbPassword);
-				System.out.println(isAuthenticated);
-				// check user is whitelisted
+				System.out.println("isAutenticated ---" + isAuthenticated);
+				System.out.println(user.getIswhitelist());
 				if(user.getIswhitelist()==1){
-					out.println("whitelist");
+					response.sendRedirect("whitelistError.jsp");
 				}
 				else
 				{
 					if(isAuthenticated==true){
 						response.setContentType("text/html"); 
-						session.setAttribute("user", user);
-						StatusDAO.makestatusOnline(email);
 						
-						// check user is admin
-						if(user.getIsAdmin()==1){
-							out.println("admin");
-//							response.sendRedirect("admin_home.jsp");
-						}
-						else{
-//							response.sendRedirect("remote_home.jsp");
-							out.println("user");
+						session.setAttribute("user", user);
+						
+						if(email.equals("admin@gmail.com")){
+							StatusDAO.makestatusOnline(email);
+							response.sendRedirect("admin_home.jsp");
+						}else{
+								StatusDAO.makestatusOnline(email);
+								response.sendRedirect("remote_home.jsp");
 							}
-					}
-					else{
-						out.println("error");
+						}
 					}
 				}
-			}
-		  else{
-				// user not exists
-//					session.setAttribute("err","Invalid Credentials");
-//					response.sendRedirect("index.jsp");
-			out.println("error");
-			}
+				else{
+					System.out.println("user not loggin in");
+					err="Invalid Credentials";
+					session.setAttribute("err",err);
+					response.sendRedirect("index.jsp");
+				}
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 	}
+
 }

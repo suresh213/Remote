@@ -1,9 +1,12 @@
 package com.remote.dao;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.remote.model.*;
+import com.remote.model.RequestModel;
 import com.remote.util.DBConnection;
 
 public class RequestDAO {
@@ -17,15 +20,13 @@ public class RequestDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				RequestModel user = new RequestModel();
-				user.setRequestId(rs.getInt("requestId"));
 				user.setName(rs.getString("name"));
-				user.setEmail(rs.getString("email"));
+				user.setRegno(rs.getString("regno"));
 				user.setDepartment(rs.getString("department"));
 				user.setPurpose(rs.getString("purpose"));
-				user.setFromDate(rs.getString("fromDate"));
-				user.setToDate(rs.getString("toDate"));
+				user.setFromdate(rs.getString("fromDate"));
+				user.setTodate(rs.getString("toDate"));
 				user.setReason(rs.getString("reason"));
-				System.out.println(user);
 				students.add(user);
 			}
 		}
@@ -35,33 +36,14 @@ public class RequestDAO {
 		return students;
 	}
 	
-	
-	
-	/// delete with id bug
-	public static void makestatusDone(int id)
+	public static void makestatusDone(String regno)
 	{
 		int result=0;
 		try{
 			Connection con = DBConnection.getConnection();
-			String query = "UPDATE `requesttable` SET `status`= 1 WHERE requestId = ?";
+			String query = "UPDATE `requesttable` SET `status`= 1 WHERE regno = ?";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setInt(1, id);
-			result = pst.executeUpdate();
-		}
-		catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	public static void deleteRequest(int id)
-	{
-		int result=0;
-		try{
-			Connection con = DBConnection.getConnection();
-			String query = "DELETE FROM `requesttable`  WHERE requestId = ?";
-			PreparedStatement pst = con.prepareStatement(query);
-			pst.setInt(1, id);
+			pst.setString(1, regno);
 			result = pst.executeUpdate();
 		}
 		catch(Exception e)

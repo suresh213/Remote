@@ -5,449 +5,568 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	 <meta charset="ISO-8859-1">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"">
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>	
+		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	<title>remote|chat</title>
-	<style type="text/css">
+    <meta charset="ISO-8859-1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>Remote|Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1b141a;
+        }
 
-		*{
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			
-		}
-		html,body{
-			display: grid;
-			height: 100%;
-			place-items: center;
-			background: #1b141a;
-		}
+        .header{
+            display: inline-flex;
+            flex-direction: row;
+            height: 60px;
+        }
 
-		::-webkit-scrollbar {
-            width: 3px;  
-            border-radius: 25px;  
+        .topbar{
+            display: flex;
+            float: right;
+            margin-left:30px;
+            width: 600px;
+        }
+
+        .icons{
+            padding-top: 20px;
+            padding-right: 40px;
+            position: relative;
+            display: inline-block;
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .icons .tooltiptext {
+          width: 120px;
+          margin-top: 25px;
+          margin-left:  -75px; 
+          background-color: transparent;
+          color: #777;
+          text-align: center;
+          padding: 5px 0;      
+          position: absolute;
+          z-index: 1;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #ddd;
+
+        .icons .one{
+            margin-right: 25px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #777;
+            cursor:pointer;
         }
 
-         ::-webkit-scrollbar-thumb:hover {
-            background: #ccc;
+      
+        .one i{
+            font-size: 30px;
+            color: white;
         }
 
-		.wrapper{
-			margin-left: 0px;
-			width: 870px;
-			background: #fff;
-			border-radius: 5px;
-			border: 1px solid lightgrey;
-			border-top: 0px;
-			font-family: 'poppins',sans-serif;
-		}
-
-		.wrapper .title{
-			background: #330033;
-			color: #fff;
-			font-size: 20px;
-			font-weight: 500;
-			line-height: 60px;
-			text-align: center;
-			border-bottom: 1px solid #006fe6;
-			border-radius: 5px 5px 0 0;
-		}
-
-		.wrapper .form{
-			padding: 20px 15px;
-			min-height: 400px;
-			max-height: 400px;
-			overflow-y: auto;
-			background:black;
-		}
-
-		.wrapper .form .inbox{
-			width: 100%;
-			display: flex;
-			align-items: baseline;
-		}
-
-		.wrapper .form .user-inbox{
-			justify-content: flex-end;
-			margin: 13px 0; 
-		}
-
-		.wrapper .form .inbox .icon{
-			height:  40px;
-			width: 40px;
-			color: #fff;
-			text-align: center;
-			line-height: 40px;
-			border-radius: 50%;
-			font-size: 18px;
-			background: #007bff;	
-		}
-		
-		.wrapper .form .inbox i{
-			margin-top:10px;
-		}
-
-		.wrapper .form .inbox .msg-header{
-			max-width: 53%;
-			margin-left: 10px;
-		}
-
-		.form .inbox .msg-header p{
-			color: #fff;
-			background: #007bff;
-			border-radius: 10px;
-			padding: 8px 10px;
-			font-size: 14px;
-			word-break:break-all;
-		}
-
-		.form .user-inbox .msg-header p{
-			color: #333;
-			background: #efefef;
-		}
-
-		.wrapper .typing-field{
-			display: flex;
-			height: 60px;
-			width: 100%;
-			align-items: center;
-			justify-content: space-evenly;
-			background: #330033;
-			border-top: 1px solid #d9d9d9;
-			border-radius: 0 0 5px 5px;
-		}
-
-		.wrapper .typing-field .input-data{
-			height: 40px;
-			width: 535px;
-			position: relative;
-		}
-		.wrapper .typing-field .input-data input{
-			height: 100%;
-			width: 100%;
-			outline: none;
-			border: 1px solid transparent;
-			padding: 0 80px 0 15px;
-			border-radius: 3px;
-			font-size: 15px;
-			background: #fff;
-			transition: all 0.3s ease;
-		}
-
-		.typing-field .input-data input:focus{
-			border-color: rgba(0,123,255,0.8);
-		}
-
-		.input-data input::placeholder{
-			color: #999999;
-			transition: all 0.3s ease;
-		}
-
-		.input-data input:focus::placeholder{
-			color: #bfbfbf;
-		}
-
-
-		.wrapper .typing-field .input-data button{
-			position: absolute;
-			right: 5px;
-			top: 50%;
-			height: 30px;
-			width: 65px;
-			color: #fff;
-			font-size: 16px;
-			cursor: pointer;
-			border-radius: 3px;
-			background: #330033;
-			border: 1px solid #007bff;
-			transform: translateY(-50%);
-		}
-
-		/*.topbar{
-			display: flex;
-			float: right;
-			 margin-left:30px;
-            width: 600px;
-		}*/
-
-		.icons{
-			/*margin-left: 800px;*/
-			width: 1250px;
-			margin-top: 20px;
-			height: 50px;
+        .breaks{
+            padding-top: 20px;
+            padding-right: 20px;
         }
 
-        .icons a{
-        	font-size: 20px;
-        	padding-right: 15px; 
+        .breaks .two{
+            font-size: 15px;
+            border-radius: 20px;
+            outline: none;
+            margin-right: 25px;
+            margin-top: 15px;
         }
 
+        .two:hover{
+            background-color: #777;
+        }
 
         .logo{
-        	float: left;
-        	padding-top: 20px;
-        	width: 100px;
-        	display: flex;
-        	vertical-align:middle;
+            margin-right: 680px;
+            padding-top: 20px;
+            padding-left: 23px;
+            width: 100px;
             background-color: #1b141a;
+        }
+        
+        .logoname{
+        	display:flex;
+        	vertical-align:middle;
+    		
+        }
+        .text1{
+            text-decoration: none;
+            font-size:15px;
+            color:white;
+            margin: 15px 0 0 5px;
         }
 
         .logo i{
         	color:white;
-            font-size: 40px;
+            font-size: 30px;
+        }
+        
+		.re{
+		 	text-decoration:none;
+		 }
+		 
+        .re:hover{
+            color: red;
+            transition: .5s;
+            transform: scale3d(1.1,1.1,1.1);
         }
 
-        .text1{
-            text-decoration: none;
-            font-size:15px;
-            margin-top: 15px;
-            color: white;
-        }
-
-        .links{
-        	display: inline-flex;
-        	float: right;
-        	padding-right: 20px;
-        }
-
-        .tooltiptext{
-        	font-size: 16px;
-        	color: #777;
-        	/*margin-left: -10px;*/
-        }
-
-        .links i{
-        	margin-left: 5px;
-        	font-size: 30px;
+        .tablinks{
+            margin-right: 20px;
         }
 
         .sidenav{
-        	/*margin-top: 100px;*/
-        	display: flex;
-        	flex-direction: column;
-        	margin-right:1200px; 
+            position: relative;
+            margin-top:20px;
         }
 
         #mySidenav a {
           position: absolute;
-          margin-top: 80px;
           left: -80px;
           transition: 0.5s;
           padding: 15px;
-          width: 130px;
+          width: 100px;
           text-decoration: none;
           font-size: 20px;
-          border-radius: 0 5px 5px 0;
           color: white;
+          border-radius: 0 5px 5px 0;
+          
         }
-
+		
+		#mySidenav i{
+			float:right;
+		}
+		
+		
         #mySidenav a:hover {
           left: 0;
         }
-
-        #mySidenav i{
-			float:right;
-			color: white;
-		}
-
-		#select i{
-			float: right;
-			color: white
-		}
+        
 
         #chat {
-      		color: white;
-            text-decoration: none;
-          /*background-color: #99ddff ;*/
+         	color:white;
+         	text-decoration:none;
         }
 
-        #attendance{
-        	top:80px;
-        	background-color: #99ddff;
-        }
-
-         #request {
-          top:140px;
-          background-color:#2196F3;;
+        #request {
+          top: 80px;
+          background-color: #2196F3;
+          /*background-color: #66ccff;*/
         }
 
         #files {
-          top: 200px;
+          top: 140px;
           background-color: #f44336;
           /*background-color:  #33bbff;*/
         }
 
         #task {
-          top: 260px;
+          top: 200px;
           background-color: #555;
           /*background-color: #00aaff;*/
         }
 
         #todo{
-           top: 320px;
-           background-color: #ff8000;
+          top: 260px;
+          background-color:  #ff8000;
+          /*background-color:  #0088cc;*/
         }
 
         #contact{
-          top: 380px;
+          top: 320px;
           background-color:  #800080;
           /*background-color: #005580;*/
         }
+        .username{
+        	font-size:25px;
+        	color:white;
+        	margin-left:200px;
+        }
+        .content{
+          width: 1000px;
+          height: 500px;
+          background-color: transparent;
+          margin-left: 170px;
+          display: flex;
+          flex-wrap: wrap;
+          position: absolute;
+          max-width: 1000px;
+          border-radius: 30px;
+          font-family: 'Raleway', sans-serif;
+          margin-top:0px;
+          border: 2px solid #dedede;
+        }
 
-        #select{
+    	#select{
           position: absolute;
           padding: 15px;
-          width: 120px;
+          width: 100px;
           text-decoration: none;
           font-size: 20px;
           color: white;
           border-radius: 0 5px 5px 0;
-          left:-10px;
-          margin-top: 100px;
+          margin-top: 20px;
           background-color: #4CAF50;
           color: white;
         }
+        
+        .dia{
+        	left: -270%;
+			top: 270%;
+        	margin:auto;
+        	width:150%;
+        	height:130%;
+        	position:absolute;
+        	z-index:100;
+        	background-color:#F4FFEF;
+        	border:1px dotted black;"
+       }
+       
+       
+       .blur{
+          -webkit-filter: blur(2px);
+          -moz-filter: blur(2px);
+          -o-filter: blur(2px);
+          -ms-filter: blur(2px);
+          filter: blur(2px);    
+        }
+        
+		#overlay    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
+		
+		
+		#overlay1    {
+		    position: fixed;
+		    display: none;
+		    left: 0px;
+		    top: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    background: rgba(255,255,255,.8);
+		    z-index: 999;
+		}
+		
+		#popup {
+		    position: absolute;
+		    width: 400px;
+		    height: 200px;
+		    background: rgb(255,255,255);
+		    border: 5px solid rgb(90,90,90);
+		    left: 0px;
+		    right: 0px;
+		    top: 0px;
+		    bottom: 0px;
+		    margin: auto;
+		    text-align:center;
+		 }
+		
+		.breakQuotes{
+			font-family: 'Raleway', sans-serif;
+			text-align:center;
+			font-size:20px;
+		
+		}
+		
+		      .container {
+        border: 2px solid #dedede;
+        /*background-color: #f1f1f1;*/
+        background-color: #1b141a;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 70%;
+      }
 
+      .darker {
+        margin-left: 25%;
+        border-color: #ccc;
+        background-color: black;
+      }
 
-	</style>
+      .container::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      .container img {
+        float: left;
+        max-width: 40px;
+        margin-top: 20px;
+        margin-right: 20px;
+        border-radius: 50%;
+      }
+
+      .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right:0;
+      }
+
+      .time-right {
+        float: right;
+        color: #aaa;
+      }
+
+      .time-left {
+        float: left;
+        color: #999;
+      }
+		
+		
+        .panel{
+          border: 2px solid #dedede;
+          width: 330px;
+          height: 460px;
+          background-color: #1b141a;
+          margin-left: 630px;
+          margin-top: -410px;
+        }
+
+        .chat{
+           /*margin-left: 361px;*/
+           margin-top: 20px;
+           overflow: scroll;
+           width: 61%;
+           height: 400px;
+           background-color: transparent;
+         
+        } 
+
+         ::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+        /* Optional: show position indicator in red */
+        ::-webkit-scrollbar-thumb {
+            background: #FF0000;
+        }
+
+        .typeSection{
+          display: flex;
+          margin-top: 430px;
+        
+        }
+
+        .text{
+          width: 70%;
+          height: 60px;
+          margin-top:-100px;
+          margin-left:250px;
+        }
+
+        textarea{
+          width: 300px;
+          height: 40px;
+          border-radius: 10px;
+          margin-left: -50px;
+          resize: none;
+          font-size: 15px;
+          display: inline-block;
+          position: fixed;
+          outline: none;
+          margin-top: 100px;
+          
+        }
+
+        .send{
+          padding: 14px;
+          border-radius: 10px;
+          margin-left: 260px;
+          margin-top: 100px;
+          position: fixed;
+          outline: none;
+        }
+
+        .groupdp{
+          width: 50%;
+          width: 50%;
+          border-radius: 100px;
+          margin-left: 25%;
+        }
+		
+    </style>
 </head>
-<body>
-	<div class="header">
+
+
+<body onload="updateScroll()">
+
+      
+    <div id="result"></div> 
+    <div class="header">
         <div class="logo">
+        <div class="logoname">
         	<a class="re" href="remote_home.jsp"><i class="fa fa-podcast" aria-hidden="true"></i></a>
             <h4 class="text1">Remote</h4>
+         </div>  
         </div>
         <div class="topbar">
             <div class="icons">
-               
-   				
-                <div class="links">
-                <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"><br></i><br><span class="tooltiptext"><b>logout</b></span></a></div>
-
-                <div class="links">
-                <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><br><span class="tooltiptext"><b>profile</b></span></a></div>
-
-                	<div class="links">                
-                <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><br><span class="tooltiptext"><b>lunch</b></span></a></div>
-   				
-                <div class="links">
-                <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><br><span class="tooltiptext"><b>break</b></span></a></div>
-            
-               <div class="links"><a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank"class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><br><span class="tooltiptext" style="margin-left: 5px;"><b>meet</b></span></a></div>
+                <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
+                
+                <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
+                <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
+            <div class="icons">
+                <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
+                <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
             </div>    
         </div>
     </div>
 
-     <div id="mySidenav" class="sidenav">
+   <div id="mySidenav" class="sidenav">
       <a href="remote_request.jsp" id="request">Request <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
-      <a href="remote_dash.jsp" id="attendance">Dash<i class="fa fa-check-circle" aria-hidden="true"></i></a>
       <a href="remote_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="remote_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
-      <a href="remote_todo.jsp" id="todo">To-do  <i  Style="margin-left:5px;" class="fa fa-list-ul" aria-hidden="true"></i></a> 
+      <a href="remote_schedule.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
       <a href="remote_contact.jsp" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
     </div>
-    
     <div id="select">
-    	<a href="remote_chat.jsp" id="chat">Chat  <i class="fa fa-commenting-o" aria-hidden="true"></i></a>
+    	<a href="remote_chat.jsp" id="chat">Chat  <i style="float:right" class="fa fa-commenting-o" aria-hidden="true"></i></a>
     </div>
-
-	<div class="wrapper" id="main">
-		<div class="title">Remote-Group chatter box</div>
-		<div class="form" id="box">
+    
+    <div class="content">
+   		
+		<div class="chat" id="bm">
 			<%
 			UserModel user = (UserModel)session.getAttribute("user");
 	  		String	mailid = user.getEmail();
+	  		
 			List<ChatModel> list = ChatDAO.getAllMessages(); 
 			for(ChatModel i:list)
 			{
-				if(!mailid.equals(i.getEmail()))
+				if(mailid.equals(i.getEmail()))
 				{%>
-					<div class="bot-inbox inbox">
-						<div class="icon">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</div>
-						<div class="msg-header">
-							<p><span style="color: black;float: left;"><%=i.getUsername() %></span><br><%= i.getMessage() %></p>
-						</div>
-					</div>
-			<%}else{ %>
-					<div class="user-inbox inbox">
-						<div class="msg-header" id="user-mes">
-							<p><%=i.getMessage() %></p>
-						</div>
-					</div>
-			<%}} %>     
-		</div>
-		<div class="typing-field">
+				
+				<div class="container darker">
+              		<img src="images/avatar.png" alt="Avatar" class="right" style="width:100%;">
+              		<p><%=i.getMessage() %></p>
+              		<span class="time-left"><%=i.getUsername() %>-<%=i.getTime() %></span>
+            	</div>
+            	<%}else{ %>
+				<div class="container">
+		            <img src="images/avatar.png" alt="Avatar" style="width:100%;">
+		            <p><%=i.getMessage() %></p>
+		            <span class="time-right"><%=i.getUsername() %>-<%=i.getTime() %></span>
+            	</div>
+			<%}} %>            
+          </div>
+          <form class="text" method="post" action="ChatSeverlet">
+            <textarea name="textbox"></textarea><span><button class="send">SEND</button></span>
+        </form>
+          <div class="panel"><br>
+            <img src="images/avatar.png" alt="bootcamp" class="groupdp"><br>
+            <h3 style="color: white;margin-left: 20%">SKI BOOTCAMP 2022</h3>
+        </div>
+    </div>
+
+    <script type="text/javascript">
 			
-			<div class="input-data">
-				<input type="text" id="textbox" name="textbox" placeholder="type something here..." autocomplete="off">
-				<button type="submit" onclick="test(document.getElementById('textbox').value)" id="btn-send">send</button>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-	window.onload = initPage;
-	
-	  $(document).ready(function(){
-			$("#btn-send").on("click",function(){
-				$value = $("#textbox").val();
-				$msg = '<div class="user-inbox inbox"><div class="msg-header"><p>'+ $value+'</p></div></div>';
-				$("#box").append($msg);
-				$("#textbox").val('');
-			});
-		});
-	
-	  function test(str)
-	  {
-		  var ob=new XMLHttpRequest();
-		    ob.onreadystatechange=function ss()
-	   		{
-		    	if(this.readyState==4 && this.status==200)
-		    	{
-		    		updateScroll();
-		    		//alert("success message");
-		    	}
-		   	}
-	   		ob.open("GET","ChatSeverlet?msg="+str,true);
-	   		ob.send();
-	  }	
-	  
-	  function initPage() {
-		   updateScroll();
-	  }
-		
-	  function load(){
-		   setInterval(function () {$("#main").load(window.location.href + " #main" );}, 5000);  
-	  }
-		
-	  function updateScroll(){
-			var element = document.getElementById("box");
-			element.scrollTop = element.scrollHeight;
-	  }	
-	  
-	  $(document).ready(function(){
-			 $(".form").load("refreshChat.jsp");
-	       setInterval(function() {
-	           $(".form").load("refreshChat.jsp");
-	       }, 1000);
-	    });
-	  				
-	</script>
-		
+    			function updateScroll(){
+	      			var element = document.getElementById("bm");
+	      			element.scrollTop = element.scrollHeight;
+	  			}		
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
+    </script>
 </body>
 </html>

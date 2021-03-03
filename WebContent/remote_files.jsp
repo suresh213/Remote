@@ -158,13 +158,8 @@
           background-color: #4CAF50;
         }
 
-		#attendance{
-        	top:80px;
-        	background-color: #99ddff;
-        }
-		
         #request {
-          top: 140px;
+          top: 80px;
           background-color: #2196F3;
           /*background-color: #66ccff;*/
         }
@@ -175,19 +170,19 @@
         }
 
         #task {
-          top: 260px;
+          top: 200px;
           background-color: #555;
           /*background-color: #00aaff;*/
         }
 
         #todo{
-          top: 320px;
+          top: 260px;
           background-color:  #ff8000;
           /*background-color:  #0088cc;*/
         }
 
         #contact{
-          top: 380px;
+          top: 320px;
           background-color:  #800080;
           /*background-color: #005580;*/
         }
@@ -199,17 +194,16 @@
         .content{
           width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           margin-left: 170px;
           display: flex;
           flex-wrap: wrap;
           position: absolute;
           max-width: 1000px;
-          border-radius: 5px;
+          border-radius: 30px;
           font-family: 'Raleway', sans-serif;
           margin-top:0px;
           border: 2px solid #dedede;
-          overflow: scroll;
         }
 
     	#select{
@@ -220,7 +214,7 @@
           font-size: 20px;
           color: white;
           border-radius: 0 5px 5px 0;
-          margin-top: 200px;
+          margin-top: 140px;
           background-color: #f44336;
           color: white;
         }
@@ -310,41 +304,25 @@
 			margin-top:-150px;
 			margin-left:300px;
 		}
+		table {
+          color:white;
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          outline: none;
+          border: none;
+        }
+
+		th{
+			background-color: #dddddd;
+			color:black;
+		}
 		
-		      .file-content{
-        width: 80%;
-        height: auto;
-        margin: auto;
-        border-radius: 10px;
-        margin-top: 20px;
-      }
-
-      .file-content a{
-        text-decoration: none;
-      }
-
-      .clickfile{
-          border-radius: 10px;
-          background: black;
-          display: flex;
-      }
-
-      .clickfile:hover{
-        background: #555
-      }
-
-      .clickfile img{
-        padding: 20px;
-      }
-
-      .filename{
-        position: relative;
-        margin-top: 30px;
-        color: white; 
-      }
-      #post-text{
-        font-size: 25px;
-      }
+        td, th {
+          text-align: left;
+          padding: 8px;
+          font-size:20px;
+        }
 		
 		::-webkit-scrollbar {
             width: 0px;  /* Remove scrollbar space */
@@ -374,9 +352,11 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                              
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="remote_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -386,10 +366,9 @@
 
    <div id="mySidenav" class="sidenav">
       <a href="remote_chat.jsp" id="chat">Chat  <i style="float:right" class="fa fa-commenting-o" aria-hidden="true"></i></a>
-      <a href="remote_dash.jsp" id="attendance">Dash<i class="fa fa-check-circle" aria-hidden="true"></i></a>
       <a href="remote_request.jsp" id="request">Request <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></a>
       <a href="remote_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
-      <a href="remote_todo.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
+      <a href="remote_schedule.jsp" id="todo">To-do <i class="fa fa-list-ul" aria-hidden="true"></i></a>
       <a href="remote_contact.jsp" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
     </div>
     <div id="select">
@@ -397,8 +376,11 @@
    	</div>
     
     <div class="content">
-   
+   		<div id="myDIV" class="header1">
+        <h2 style="margin:5px; float: left; margin-top: 40px;">FILES</h2><br><br>
+      </div>
       
+      <table class="tab">
       
       <%
 		try{
@@ -407,18 +389,125 @@
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){ %>
-           		
-        		<div class="file-content">
-            		<a href="getfile.jsp?id=<%=rs.getInt("id")%>" target="blank"><div class="clickfile"><img src="images\file.png" alt="file" width="80px" height="80px"><span class="filename"><span id="post-text"><%=  rs.getString("name") %></span> <br><br> uploaded on : 2021-02-07 12:43:11<br></span></div></a><br>
-        		</div>
+           
+           <tr>
+				<td><%=  rs.getString("name") %></td>
+                <td ><a href="getfile.jsp?id=<%=rs.getInt("id")%>" style="color:red" target="_blank">show file</a></td>
+            </tr>
             <% }}catch(Exception e){
 			System.out.println(e);
 		}
       	%>
+      </table>
     </div>
 
     <script type="text/javascript">
-		 		
+			
+    			function updateScroll(){
+	      			var element = document.getElementById("bm");
+	      			element.scrollTop = element.scrollHeight;
+	  			}		
+    
+    
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
     </script>
 </body>
 </html>

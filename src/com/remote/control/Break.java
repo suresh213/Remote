@@ -27,60 +27,38 @@ public class Break extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
+
 		response.setContentType("text/html");
 		String action = request.getParameter("action");
-		System.out.println("action is here ---->" +action);
+		System.out.println("action " +action);
 		HttpSession session=request.getSession();
 		UserModel user =  (UserModel) session.getAttribute("user");
+		System.out.print(user);
 	
 		try{
 			if(action !=null && action.equalsIgnoreCase("breaktea")){
 				StatusDAO.makestatusOffline(user.getEmail());
-				StatusDAO.makeStudentAtTea(user.getEmail());
-				session.setAttribute("teabreak", true);
-				System.out.println("break page");
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_home.jsp");
-				}else{
-					response.sendRedirect("remote_home.jsp");
-				}
+				session.setAttribute("studentOfflineStatus", true);
+				response.sendRedirect("remote_home.jsp");
 			}
 			
 			if(action !=null && action.equalsIgnoreCase("endtea")){
 				StatusDAO.makestatusOnline(user.getEmail());
-				session.setAttribute("teabreak", false);
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_home.jsp");
-				}else{
-					response.sendRedirect("remote_home.jsp");
-				}
+				session.setAttribute("studentOfflineStatus", false);
+				response.sendRedirect("remote_home.jsp");
 			}
 			
 			
 			if(action !=null && action.equalsIgnoreCase("breaklunch")){
 				StatusDAO.makestatusOffline(user.getEmail());
-				StatusDAO.makeStudentAtLunch(user.getEmail());
 				session.setAttribute("lunchbreak", true);
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_home.jsp");
-				}else{
-					response.sendRedirect("remote_home.jsp");
-				}
+				response.sendRedirect("remote_home.jsp");
 			}
 		
 			if(action !=null && action.equalsIgnoreCase("endlunch")){
 				StatusDAO.makestatusOnline(user.getEmail());
 				session.setAttribute("lunchbreak", false);
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_home.jsp");
-				}else{
-					response.sendRedirect("remote_home.jsp");
-				}
+				response.sendRedirect("remote_home.jsp");
 			}
 		} catch (Exception e) {
             e.printStackTrace();

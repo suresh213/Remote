@@ -1,8 +1,6 @@
 package com.remote.control;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
+import java.io.IOException;  
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,40 +43,40 @@ public class Register extends HttpServlet {
 		String name = request.getParameter("name").trim();
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
+		String conpass = request.getParameter("conpass");
 		
-		HttpSession session = request.getSession();
-		response.setContentType("text/html");
-	    PrintWriter out = response.getWriter();
-		    try {
-                // check email already exists in database
-		    	System.out.println("fsdsfs"+ UserDAO.getStudentByEmail(email));
-				if(UserDAO.getStudentByEmail(email).getName()==null){
-					HashPassword hashPassword = new HashPassword();
-					String hashedPassword = hashPassword.signup(password);
-					UserModel user = new UserModel();
-					
-					user.setName(name);
-					user.setEmail(email);
-					user.setPassword(hashedPassword);
-					
-					// check data saved
-					if(UserDAO.save(user)>0){
-						StatusDAO.createTable(email, name);
-						StatusDAO.createAttendanceTable(email, name);
-						session.setAttribute("user", user);
-						StatusDAO.makestatusOnline(email);
-						out.print("success");
-					}
-					else{
-						out.print("error");
-					}	
+		if(password.equals(conpass))
+		{
+			try {
+// 			check email already exists in database
+//			if(UserDAO.getStudentByEmail(email)==0){
+				HashPassword hashPassword = new HashPassword();
+				String hashedPassword = hashPassword.signup(password);
+				UserModel user = new UserModel();
+				
+				user.setName(name);
+				user.setEmail(email);
+				user.setPassword(hashedPassword);
+				
+				int status = UserDAO.save(user);
+				if(status>0){
+					StatusDAO.createTable(email, name);
+					System.out.println("updated");
+					HttpSession session = request.getSession();
+					session.setAttribute("user", user);
+					StatusDAO.makestatusOnline(email);
+					response.sendRedirect("remote_home.jsp");
 				}
 				else{
-					out.print("error");
-				}
+					request.getRequestDispatcher("index.jsp").forward(request, response);
+				}	
+//			}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else{
+			System.out.println("password doesnt match");
+		}
 	}
 
 }

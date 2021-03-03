@@ -192,15 +192,15 @@
         }
   
         .content{
-          width: 1200px;
+          width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           margin-left: 170px;
           display: flex;
           flex-wrap: wrap;
           position: absolute;
           max-width: 1000px;
-          border-radius: 5px;
+          border-radius: 30px;
           font-family: 'Raleway', sans-serif;
           margin-top:10px;
            border: 2px solid #dedede;
@@ -330,7 +330,6 @@
           width: 100%;
           outline: none;
           border: none;
-          
         }
 
 		th{
@@ -338,18 +337,9 @@
 			color:black;
 		}
 		
-        th {
-          text-align: center;
+        td, th {
+          text-align: left;
           padding: 8px;
-        }
-        
-        td{
-			padding:10px;  
-			text-align: center;      
-	    }
-        td a{
-        	text-decoration:none;
-        	color:white;
         }
 
        .modal {
@@ -390,10 +380,7 @@
 		  cursor: pointer;
 		}
 
-		tr:nth-child(odd){
-  			background-color: #777;
-  			color: #fff;
-		}
+		
 		
     </style>
 </head>
@@ -429,7 +416,7 @@
    <div id="mySidenav" class="sidenav">
       <a href="admin_chat.jsp" id="chat">Chat  <i class="fa fa-commenting-o" aria-hidden="true"></i></a>
       <a href="admin_whitelist.jsp" id="attendance">whitelist<i class="fa fa-check-circle" aria-hidden="true"></i></a>
-      <a href="admin_files.jsp" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
+      <a href="" id="files">Files <i class="fa fa-file-text" aria-hidden="true"></i></a>
       <a href="admin_task.jsp" id="task">Task <i class="fa fa-tasks" aria-hidden="true"></i></a>
       <a href="admin_schedule.jsp" id="todo">Scheme  <i  Style="margin-left:5px;" class="fa fa-pencil-square" aria-hidden="true"></i></a> 
       <a href="admin_contact.jsp" id="contact">Contact <i class="fa fa-address-book-o" aria-hidden="true"></i></a>
@@ -447,27 +434,38 @@
     	<%if(user.size()!=0){ %>
 		<table>
         <tr>
-          <th>NAME</th>
-          <th>EMAIL</th>
+          <th style="border-top-left-radius:30px;">NAME</th>
+          <th>REGNO</th>
           <th>DEPARTMENT</th>
           <th>PURPOSE</th>
-          <th>FROM</th>
-          <th>TO</th>
+          <th>FROM-DATE</th>
+          <th>TO_DATE</th>
           <th>REASON</th>
-          <th>RESPONSE</th>
+          <th style="border-top-right-radius:30px;">STATUS</th>
         </tr>
         
         <% for(RequestModel i : user){ %>
         <tr>
           <td><%= i.getName() %></td>
-          <td><%= i.getEmail() %></td>
+          <td><%= i.getRegno() %></td>
           <td><%= i.getDepartment() %></td>
           <td><%= i.getPurpose() %></td>
-          <td><%= i.getFromDate() %></td>
-          <td><%= i.getToDate() %></td>
+          <td><%= i.getFromdate() %></td>
+          <td><%= i.getTodate() %></td>
           <td><%= i.getReason() %></td>
-          <td><a href="Respond?action=accept&requestId=<%=i.getRequestId()%>"  style="background-color: green;height:30px; padding: 10px; font-size: 15px;margin-left:40px;margin-bottom:10px">Accept</a>&nbsp<a href="Respond?action=deny&requestId=<%=i.getRequestId()%>"  style="background-color: red;height:30px; padding: 10px; font-size: 15px;margin-left:40px;margin-bottom:10px">Deny</a></td>
+          <td><button id="myBtn">RESPOND</button></td>
         </tr>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 >CHOOSE RESPONSE:</h3>
+            <form method="post" action="Respond">
+            	<input style="margin-left: 100px; visibility:hidden;" name="regno" value="<%=i.getRegno()%>"></input>
+            	<input type="submit" name="btn_accept" value="accept" style="background-color: green;height:30px; padding: 10px; font-size: 15px;margin-left:40px;margin-bottom:10px"></input>
+            	<input type="submit" name="btn_deny" value="deny"style="background-color: red;green;height:30px; padding: 10px;margin-left: 30px; font-size: 15px;"></input>
+          	</form>
+          </div>
+        </div>
 		<%} %>
 	</table>
 		<%}else{ %>
@@ -477,7 +475,134 @@
     </div>
 
     <script type="text/javascript">
+    
+    // Get the modal UPDATE `requesttable` SET `status`= 1 WHERE regno = "18tuec204";
+    var modal = document.getElementById("myModal");
 
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    	
+    
+			
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
  		
     </script>
 </body>

@@ -62,27 +62,14 @@ public class ProfilePictureUpload extends HttpServlet {
 			}
 			else{
 				System.out.println("No image");
-				response.sendRedirect("remote_profile.jsp");
 			}
 			if(result>0)
 			{
 				System.out.println("insert successfully");
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_profile.jsp");
-				}else{
-					response.sendRedirect("remote_profile.jsp");
-				}
 			}
 			else
 			{
 				System.out.println("not successful");
-				if(user.getIsAdmin()==1)
-				{
-					response.sendRedirect("admin_profile.jsp");
-				}else{
-					response.sendRedirect("remote_profile.jsp");
-				}
 			}
 		}
 		else if(action.equalsIgnoreCase("file")){
@@ -104,39 +91,19 @@ public class ProfilePictureUpload extends HttpServlet {
 				if(result>0)
 				{
 					System.out.println("file insert successfully");
-					response.sendRedirect("admin_files.jsp");
 				}
 				else
 				{
 					System.out.println("file not inserted");
-					response.sendRedirect("admin_files.jsp");
 				}
 			}
 			else{
 				System.out.println("No file");
 			}
 			
-		}else if(action.equalsIgnoreCase("delete")){
-			try{
-			    PreparedStatement ps =conn.prepareStatement("delete from files where id=?");
-			    ps.setInt(1, Integer.parseInt(request.getParameter("id")));
-			    result = ps.executeUpdate();
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-			if(result>0)
-			{
-				System.out.println("deleted successfully");
-				response.sendRedirect("admin_files.jsp");
-			}
-			else
-			{
-				System.out.println("Not deleted");
-			}
 		}
-		
-}
+		response.sendRedirect("admin_files.jsp");
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

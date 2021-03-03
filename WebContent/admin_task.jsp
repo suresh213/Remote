@@ -196,13 +196,13 @@
         .content{
           width: 1000px;
           height: 500px;
-          background-color: #330033;
+          background-color: transparent;
           margin-left: 170px;
           display: flex;
           flex-wrap: wrap;
           position: absolute;
           max-width: 1000px;
-          border-radius: 5px;
+          border-radius: 30px;
           font-family: 'Raleway', sans-serif;
           margin-top:0px;
           border: 2px solid #dedede;
@@ -326,8 +326,8 @@
           {
             width: 350px;
             height: 480px;
-            background-color:#330033; 
-            margin-left: 650px;
+            background-color:#1b141a ;
+            margin-left: 600px;
             margin-top: -480px; 
             border-left:2px solid #dedede;
             font-family: 'Raleway', sans-serif;
@@ -369,9 +369,11 @@
                 <a href="https://meet.google.com/lookup/fpn42pl5n7?authuser=0&hs=179" target="blank" class="one"><i style="color: #4CAF50" class="fa fa-users" aria-hidden="true"></i><span class="tooltiptext"><b>meet</b></span></a>
                 
                 <a href="Break?action=breaktea" class="one"><i style="color: #ff8000" class="fa fa-coffee" aria-hidden="true"></i><span class="tooltiptext"><b>break</b></span></a>
-                               
+                <div id="overlay"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Chill out time"</span><br><br><div id="td" style="color: red"></div><br><br><a href="Break?action=endtea">END</a></div></div>
+				                
                 <a href="Break?action=breaklunch"  class="one"><i style="color: #f44336" class="fa fa-cutlery" aria-hidden="true"></i><span class="tooltiptext"><b>lunch</b></span></a>
-   			</div>
+   				<div id="overlay1"><div id="popup"><br><span class="breakQuotes">"If you are tired learn to rest, not to quit"<br><br>"Have a good lunch"</span><br><br><div id="ld" style="color: red"></div><br><br><a href="Break?action=endlunch">END</a></div></div>
+            </div>
             <div class="icons">
                 <a href="admin_profile.jsp" class="one" style="padding-left: 10px;padding-right: 15px"><i style="color: #2196F3" class="fa fa-user-circle" aria-hidden="true"></i><span class="tooltiptext"><b>profile</b></span></a>
                 <a href="logout.jsp" class="one"><i style="color: #800080" class="fa fa-sign-out" aria-hidden="true"></i><span class="tooltiptext"><b>logout</b></span></a>
@@ -394,28 +396,26 @@
    
     <div class="content">
         <h3 style="color: white;margin-left: 10px;margin-top: 20px;">TASK ASSINED TO STUDENTS</h3>
-       <form class="taskcontent" action="Task?action=update" method="post">
+        <form class="taskcontent" action="Task?action=update" method="post">
         <label for="taskname">TASK NAME</label>
-        <input type="text" name="taskname" required>
+        <input type="text" name="taskname">
         <label for="date">DATE</label>
-        <input type="date" name="date" style="width:172px" required>
+        <input type="date" name="date" style="width:172px" >
         <label for="type">TYPE</label>
-        <input type="text" name="type" required>
+        <input type="text" name="type">
         <label for="assigned">ASSIGNED TO</label>
-        <input type="text" name="assigned" required>
+        <input type="text" name="assigned">
         <label for="hours">HOURS</label>
-        <input type="hours" name="hours" required>
+        <input type="hours" name="hours">
         <label for="time">TIME</label>
-        <input type="time" name="fromTime" style="margin-left: -80px;" required>
-        <input type="time" name="toTime" required><br>
+        <input type="time" name="fromTime" style="margin-left: -80px; ">
+        <input type="time" name="toTime" ><br>
         <label for="fav">LINK</label>
-        <input style="height:15px;width:180px;" type="text" name="link" required><br>
+        <input style="height:15px;width:180px;" type="text" name="link"><br>
         <button type="submit" id= "btn">UPDATE</button>
       </form>
-       
-       
         <div class="fav">
-          <h2 style="margin-left: 90px;color: white">RECENT</h2>
+          <h2 style="margin-left: 120px;color: white">RECENT</h2>
           <table>
           	<%List<TaskModel> list = TaskDAO.getRecent();
           		for(TaskModel i : list)
@@ -432,7 +432,106 @@
     </div>
 
     <script type="text/javascript">
-			 		
+			
+    		window.onload = function(){
+    			var teabreak = <%= session.getAttribute("studentOfflineStatus")%>
+    			if(teabreak===true)
+    			{
+    				myBlurFunction(1);
+    			}
+    			else if(teabreak===false){
+    				myBlurFunction(0);
+    			}
+    		}
+ 
+    		window.onload = function(){
+    			var lunchbreak = <%= session.getAttribute("lunchbreak")%>
+    			if(lunchbreak===true)
+    			{
+    				myBlurFunction1(1);
+    			}
+    			else if(lunchbreak===false){
+    				myBlurFunction1(0);
+    			}
+    		}
+    
+    
+    
+		    myBlurFunction = function(state) {
+		        var containerElement = document.getElementById('main_container');
+		        var overlayEle = document.getElementById('overlay');
+				if (state) {
+		            overlayEle.style.display = 'block';
+		            containerElement.setAttribute('class', 'blur');
+		        } else {
+		            overlayEle.style.display = 'none';
+		            containerElement.setAttribute('class', null);
+		        }
+		    };
+		    
+	   	  myBlurFunction1 = function(state) {  
+			    var overlayEle = document.getElementById('overlay1');
+				 if (state) {
+			        overlayEle.style.display = 'block';
+			        containerElement.setAttribute('class', 'blur');
+			    } else {
+			        overlayEle.style.display = 'none';
+			        containerElement.setAttribute('class', null);
+			    }
+			};
+			    
+
+    		
+			
+			var countDownDate = new Date();
+			countDownDate.setMinutes(countDownDate.getMinutes() + 60 );
+			
+			 var x = setInterval(function() {
+			 var now = new Date().getTime();
+			 var distance = countDownDate - now;
+			 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			 document.getElementById("ld").innerHTML = minutes + "m " + seconds + "s ";
+			 if (distance < 0) {
+			    clearInterval(x);
+			    document.getElementById("ld").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+
+			
+			
+			var breaktime = new Date();
+			breaktime.setMinutes( breaktime.getMinutes() + 15 );
+			
+			var y = setInterval(function(){
+				var cur = new Date().getTime();
+				var dif = breaktime - cur;
+				var min = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+				var sec = Math.floor((dif % (1000 * 60)) / 1000);
+				document.getElementById("td").innerHTML = min + "m " + sec + "s ";
+				if (dif < 0) {
+				    clearInterval(y);
+				    document.getElementById("td").innerHTML = "EXPIRED";
+				}
+			},1000);
+			
+			
+    
+    	var auto_refresh = setInterval(
+    		function () {
+    		    $().load();
+    	}, 1000);
+   		 
+       function setAttendence(){
+    	     var rand = Math.round(Math.random() * 10);
+   			 setTimeout(function() {
+	             alert("hiiii");
+	             console.log("Delayed " + rand + " secs.");
+	             setAttendence();  
+           }, rand*1000);
+   	   }
+       
+ 		
     </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 package com.remote.dao;
 
-import com.remote.util.*; 
+import com.remote.util.*;
 import com.remote.model.*;
 
 import java.io.*;
@@ -36,14 +36,13 @@ public class UserDAO {
 		int status = 0;
 		try{
 			Connection con= DBConnection.getConnection();
-			String query = "update users set reg_no=?,name=?,gender=?,dept=?,phone_number=? where email=?";
+			String query = "update users set name=?,dept=?,gender=?,phone_number=? where email=?";
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, user.getRegNo());
-			ps.setString(2, user.getName());
-			ps.setString(3, user.getDept());
-			ps.setString(4, user.getGender());
-			ps.setString(5, user.getPhoneNumber());
-			ps.setString(6, user.getEmail());
+			ps.setString(1, user.getName());
+			ps.setString(2, user.getDept());
+			ps.setString(3, user.getGender());
+			ps.setInt(4, user.getPhoneNumber());
+			ps.setString(5, user.getEmail());
 			status = ps.executeUpdate();
 		}
 		catch(Exception e){
@@ -72,11 +71,8 @@ public class UserDAO {
 	public static List<UserModel> getAllStudents(){
 		List<UserModel> students = new ArrayList<UserModel>();
 		try{
-			System.out.println("hellllllllloooooooo");
-			
 			Connection con= DBConnection.getConnection();
 			String query = "select * from users";
-			System.out.println(query);
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -86,10 +82,8 @@ public class UserDAO {
 				user.setEmail(rs.getString("email"));
 				user.setDept(rs.getString("dept"));
 				user.setGender(rs.getString("gender"));
-				user.setPhoneNumber(rs.getString("phone_number"));
 				user.setIswhitelist(rs.getInt("iswhitelist"));
 //				user.setProfilePicture(rs.getString("profile_picture"));
-				user.setIsAdmin(rs.getInt("isAdmin"));
 				students.add(user);
 			}
 		}
@@ -114,10 +108,10 @@ public class UserDAO {
 			student.setEmail(rs.getString("email"));
 			student.setDept(rs.getString("dept"));
 			student.setGender(rs.getString("gender"));
-			student.setPhoneNumber(rs.getString("phone_number"));
+			student.setPhoneNumber(rs.getInt("phone_number"));
 			student.setIswhitelist(rs.getInt("iswhitelist"));
 //			student.setProfilePicture(rs.getString("profile_picture"));
-			student.setIsAdmin(rs.getInt("isAdmin"));
+			
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -141,10 +135,9 @@ public class UserDAO {
 					student.setPassword(rs.getString("password"));
 					student.setDept(rs.getString("dept"));
 					student.setGender(rs.getString("gender"));
-					student.setPhoneNumber(rs.getString("phone_number"));
+					student.setPhoneNumber(rs.getInt("phone_number"));
 					student.setIswhitelist(rs.getInt("iswhitelist"));
 //					student.setProfilePicture(rs.getBytes("profile_picture"));
-					student.setIsAdmin(rs.getInt("isAdmin"));
 				}
 				System.out.println("-------------->  "+student.getEmail());
 			}
